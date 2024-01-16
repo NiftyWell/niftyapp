@@ -1,17 +1,105 @@
 <template>
     <nav class="navbar">
-        <img src="@/assets/images/logo/logo.svg" alt="Logo" class="logo" />
+        <router-link to="/">
+            <img src="@/assets/images/logo/logo.svg" alt="Logo" class="logo" />
+        </router-link>
         <div class="link-group">
             <router-link to="/" class="router-link" active-class="router-link-active">Home</router-link>
             <router-link to="/community" class="router-link" active-class="router-link-active">Community</router-link>
             <router-link to="/docs" class="router-link" active-class="router-link-active">Docs</router-link>
         </div>
-        <router-link class="connect-button" to="/connect">Connect</router-link>
+        <button v-if="$erdAccount.address" @click="logOut()" class="connect-button">{{$erdAccount.obfuscatedAddress()}}</button>
+        <button v-else @click="show = true" class="connect-button">CONNECT</button>
+
     </nav>
+    <transition name="fade">
+        <div v-if="show" class="modalShadow" @click.self="show = false">
+        <div class="modalContent">
+            <div class="modalLogin" @click.stop>
+                <div class="modalHeader">
+                <div class="closeButton" @click="show = false">
+                    <img src="@/assets/icons/close.svg" alt="Close" />
+                </div>
+                </div>
+                <VueErdjsConnect
+                :qrcodeHandler="qrcodeHandler"
+                @click="clickOnWalletConnect"
+                />
+            </div>
+        </div>
+        </div>
+    </transition>
 </template>
 
 
 <script setup>
+import { VueErdjsConnect } from "vue-mvx";
+import { sleep } from "@/utils/utils";
+import { useVueErd } from "vue-mvx";
+import { onMounted, ref, onBeforeMount, watch } from "vue";
+import CustomQRCodeHandler from "@/utils/CustomQRCodeHandler";
+import "@/assets/scss/login.scss";
+
+const qrcodeHandler = new CustomQRCodeHandler();
+const { account, erd } = useVueErd();
+const show = ref(false);
+
+const clickOnWalletConnect = () => {
+  setTimeout(() => {
+    const linkWrapperElAlreadyAppenned = document.querySelector(
+      ".vue3rdj5__modes-open__btn-login-maiar-wrapper"
+    );
+    if (linkWrapperElAlreadyAppenned) return;
+    const qrCodeEl = document.querySelector(".vue3rdj5__mode-qr");
+    if (!qrCodeEl) return;
+    const qrCodeContent = qrCodeEl["data-qrCode-data"];
+    if (!qrCodeContent) return;
+    const baseUrl =
+      "https://maiar.page.link/?apn=com.elrond.maiar.wallet&isi=1519405832&ibi=com.elrond.maiar.wallet&link=https://maiar.com/?wallet-connect=";
+    const maiarAppLink = baseUrl + encodeURIComponent(qrCodeContent);
+    const linkEl = document.createElement("a");
+    linkEl.href = maiarAppLink;
+    linkEl.innerText = "Maiar login";
+    linkEl.target = "_blank";
+    const linkWrapperEl = document.createElement("div");
+    linkWrapperEl.classList.add(
+      "vue3rdj5__modes-open__btn-login-maiar-wrapper"
+    );
+    linkWrapperEl.appendChild(linkEl);
+    const parentEl = qrCodeEl.parentElement;
+    parentEl.appendChild(linkWrapperEl);
+  }, 200);
+};
+
+watch([show, account], ([newShow, newAccount]) => {
+  if (newShow && newAccount && newAccount.logged()) {
+    show.value = false;
+  }
+});
+
+onMounted(async () => {
+  if (account.logged() && show) {
+    show.value = false;
+  }
+});
+
+onBeforeMount(async () => {
+  if (account.logged() && show) {
+    show.value = false;
+  }
+  let waiting = 5;
+  while (!account.logged() && waiting != 0) {
+    //account.value = await fetchAccount();
+    await sleep(500);
+    waiting -= 0.5;
+  }
+});
+
+function logOut() {
+  if (account.logged() && show) {
+    return erd.logout();
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -78,6 +166,34 @@
     .router-link-active {
         font-weight: normal;
     }
+
+    .modalShadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
 }
 </style>
   

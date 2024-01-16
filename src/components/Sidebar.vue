@@ -107,7 +107,6 @@ const mainStore = useMainStore();
         &:hover {
             opacity: 0.8; // Optional: change the opacity on hover for a visual effect
         }
-        user-select: none;
     }
     &.collapsed {
         width: $collapsed-sidebar-width; // Collapsed width, e.g., 50px

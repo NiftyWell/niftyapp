@@ -1,0 +1,325 @@
+.modalLogin {
+    z-index: 10;
+    margin: auto;
+    max-height: 530px;
+    overflow: hidden;
+    padding: 2%;
+    background: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 25px;
+}
+
+.modalShadow {
+    position: fixed; // Use fixed to cover the whole screen
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    z-index: 8; // Very high z-index
+    background-color: rgba(0, 0, 0, 0.5); // Semi-transparent background
+    justify-content: center;
+    align-items: center;
+}
+
+
+@mixin icon-mask($color, $src) {
+    // Mask in order to change color in /partners
+    background-color: $color;
+  
+    mask-image: url($src);
+    mask-position: center;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  
+    -webkit-mask-image: url($src);
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+  }
+  
+%btn {
+    display: inline-block;
+    color: yellow;
+    background-color: blue;
+    padding: 1.2rem 1.6rem;
+    border-radius: 100px;
+}
+
+.btn {
+    @extend %btn;
+}
+
+
+.modalHeader {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 2.5rem;
+  }
+  
+  .closeButton {
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+  }
+  
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.4s linear;
+  }
+  
+  .fade-enter {
+    opacity: 0;
+  }
+  
+  .fade-enter-to {
+    opacity: 1;
+  }
+  
+  .fade-leave-to {
+    opacity: 0;
+  }
+  
+  
+  @media (max-width: 768px) {  // This width can be adjusted as needed
+    .vue3rdj5__mode {
+      margin-top: 20px !important;
+      margin-left: 30px !important;
+      margin-bottom: 50px !important;
+      &-link {
+        margin-left: 0px !important;
+      }
+      &-qr {
+        display: none;
+      }
+    }
+  }
+  
+  .vue3rdj5__modes-open:nth-last-of-type(3)::after {
+    content: url("@/assets/icons/arrow.svg");
+  }
+  
+  .vue3rdj5__modes-open:nth-last-of-type(2)::after {
+    content: url("@/assets/icons/arrow.svg");
+  }
+  
+  .vue3rdj5__modes-open:nth-last-of-type(1)::after {
+    content: url("@/assets/icons/arrow.svg");
+  }
+  
+  .vue3rdj5 img {
+    display: none !important;
+  }
+
+  .vue3rdj5 {
+    overflow-y: auto !important;
+    max-height: 500px !important;
+    padding-bottom: 50px;
+    text-align: center;
+    font-family: "NiftyFont", sans-serif !important;
+
+    &__ledger {
+      max-width: 250px;
+      &-link {
+        border-radius: 10px;
+      }
+      &-list {
+        list-style-type: none;
+        margin-left: -20px;
+      }
+    }
+    &__mode {
+      width: 260px;
+      background: none;
+      margin: 0;
+      padding: 0;
+      color: black;
+      order: 0;
+      align-items: baseline !important;
+      min-height: 0px;
+      margin-bottom: 30px;
+      margin-left: 25px !important;
+      &-qr {
+        /* padding-left: 50px; */
+        padding-left: 0;
+        margin-bottom: 30px;
+        margin-left: -7px;
+        & canvas {
+          border-radius: 20px;
+          display: block;
+          margin: auto;
+          justify-content: center;
+          width: inherit;
+        }
+      }
+      &-link {
+        padding: 18px !important;
+        font-size: 25px;
+        text-decoration: none;
+        color: black;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+        background: #fedf25;
+        justify-content: center;
+        border-radius: 15px;
+        text-align: center;
+        margin-left: 20px;
+      }
+    }
+    &__infos {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      font-family: inherit;
+      font-size: 20px;
+      letter-spacing: -1px;
+      font-weight: 600;
+      max-width: 250px;
+      margin-left: 10px !important;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+    &__modes {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+      align-content: center;
+      max-width: 500px;
+      margin: 12px;
+      background: none !important;
+      min-height: 150px;
+  
+      &-open {
+        @extend .buttonCommon !optional;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.6rem;
+        padding-left: 70px;
+        padding-right: 165px;
+        padding-bottom: 0px;
+        font-size: 0;
+        line-height: 0;
+        -webkit-transition: transform 0.2s ease-out;
+        -moz-transition: transform 0.2s ease-out;
+        -o-transition: transform 0.2s ease-out;
+        transition: transform 0.2s ease-out;
+        color: black;
+        text-transform: uppercase !important;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px;
+        border: 2px solid #0000 !important;
+        border-radius: 35px;
+        padding-top: 13px !important;
+        background: #fedf25;
+        
+        &:hover {
+          transform: scale(1.02);
+        }
+        &:active {
+          transform: scale(1);
+        }
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+  
+        &::before {
+          content: "";
+          width: 1.5rem;
+          height: 1.5rem;
+          object-fit: cover;
+          margin-right: 0.6rem;
+        }
+        &:nth-last-of-type(4) {
+          padding-top: 10px;
+          &::before {
+            content: url("@/assets/icons/extension.svg");
+            display: inline-block;
+            margin-bottom: 3px;
+            margin-right: 0.6rem !important;
+          }
+          &::after {
+            content: "Defi Wallet";
+            font-size: 35px !important;
+            line-height: 25px !important;
+            font-family: "NiftyFont", sans-serif !important;
+            width: 1.5rem;
+            height: 1.5rem;
+            object-fit: cover;
+            margin-right: 0.6rem;
+            display: inline-block;
+            white-space: nowrap;
+          }
+        }
+  
+        &:nth-last-of-type(3) {
+          &::before {
+            content: url("@/assets/icons/xportal.svg");
+            display: inline-block;
+            margin-bottom: 3px;
+            margin-right: 0.6rem !important;
+          }
+          &::after {
+            content: "xPortal";
+            font-size: 35px !important;
+            line-height: 25px !important;
+            font-family: "NiftyFont", sans-serif !important;
+            width: 1.5rem;
+            height: 1.5rem;
+            object-fit: cover;
+            margin-right: 0.6rem;
+            display: inline-block;
+            white-space: nowrap;
+          }
+        }
+  
+        &:nth-last-of-type(2) {
+          &::before {
+            content: url("@/assets/icons/ledger.svg");
+            display: inline-block;
+            margin-bottom: 3px;
+            margin-right: 0.6rem !important;
+          }
+          &::after {
+            content: "Ledger";
+            font-size: 35px !important;
+            line-height: 25px !important;
+            font-family: "NiftyFont", sans-serif !important;
+            padding-left: 6px;
+            width: 1.5rem;
+            height: 1.5rem;
+            object-fit: cover;
+            margin-right: 0.6rem;
+            display: inline-block;
+            white-space: nowrap;
+          }
+        }
+  
+        &:nth-last-of-type(1) {
+          &::before {
+            content: url("@/assets/icons/webwallet.svg");
+            display: inline-block;
+            margin-bottom: 3px;
+            margin-right: 0.6rem !important;
+          }
+          &::after {
+            content: "Web Wallet";
+            font-size: 35px !important;
+            line-height: 25px !important;
+            font-family: "NiftyFont", sans-serif !important;
+            width: 1.5rem;
+            height: 1.5rem;
+            object-fit: cover;
+            margin-right: 0.6rem;
+            display: inline-block;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }

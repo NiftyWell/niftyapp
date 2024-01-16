@@ -9,8 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "mixin": "^0.2.0",
     "pinia": "^2.1.7",
+    "qr-code-styling": "^1.6.0-rc.1",
     "vue": "^3.3.11",
+    "vue-mvx": "^2.1.0",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
