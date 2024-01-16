@@ -1,30 +1,45 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="app">
+    <Navbar />
+    <Sidebar />
+    <div class="content" :class="{ 'expanded': !mainStore.sidebarCollapsed, 'collapsed': mainStore.sidebarCollapsed }">
+      <router-view/>
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<script setup>
+import Navbar from './components/Navbar.vue';
+import Sidebar from './components/Sidebar.vue';
+import { useMainStore} from '@/stores/mainStore';
+const mainStore = useMainStore();
+</script>
+
+<style lang="scss">
+@import "@/assets/scss/variables";
+
+.app {
+  z-index: 1;
+  display: flex;
+  min-height: 100vh;
+
+  .content {
+    z-index: 2;
+    flex: 1;
+    transition: margin-left 0.3s;
+    margin: 9.25rem 2rem 1rem 1rem; // Top, Right, Bottom, Left margins
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    top: $navbar-height; // Adjust based on the actual height of your navbar
+    background: white;
+    border-radius: 1rem;
+    &.expanded {
+      margin-left: calc(#{$sidebar-width} + 5rem); // Set the margin-left equal to the expanded width of the sidebar
+    }
+
+    &.collapsed {
+      margin-left: calc(#{$collapsed-sidebar-width} + 4rem); // When collapsed, set margin-left to collapsed width
+    }
+  }
 }
 </style>
