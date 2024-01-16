@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Home from '../views/Home.vue';
 import Staking from '../views/Staking.vue';
-import Swapping from '../views/Swapping.vue';
+import Lab from '../views/Lab.vue';
 import Maze from '../views/Maze.vue';
 import Collection from '../views/Collection.vue';
 import Wallet from '../views/Wallet.vue';
-
+import Docs from '../views/Docs.vue';
+import Community from '../views/Community.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -18,9 +19,9 @@ const routes: Array<RouteRecordRaw> = [
     component: Staking,
   },
   {
-    path: '/swapping',
-    name: 'Swapping',
-    component: Swapping,
+    path: '/lab',
+    name: 'Lab',
+    component: Lab,
   },
   {
     path: '/maze',
@@ -36,6 +37,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/wallet',
     name: 'Wallet',
     component: Wallet,
+  },
+  {
+    path: '/docs',
+    name: 'docs',
+    component: Docs,
+  },
+  {
+    path: '/community',
+    name: 'Community',
+    component: Community,
   },
   // ...add other routes here
 ];

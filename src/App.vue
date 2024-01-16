@@ -24,21 +24,24 @@ const mainStore = useMainStore();
   min-height: 100vh;
 
   .content {
+    position: fixed;
+    top: calc($navbar-height + 52px); // Adjust as needed
+    right: 2rem;
+    bottom: 1rem;
+    left: calc(#{$sidebar-width} + 5rem); // Default position (sidebar expanded)
     z-index: 2;
-    flex: 1;
-    transition: margin-left 0.3s;
-    margin: 9.25rem 2rem 1rem 1rem; // Top, Right, Bottom, Left margins
     padding: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    top: $navbar-height; // Adjust based on the actual height of your navbar
     background: white;
     border-radius: 1rem;
+    transition: left 0.3s;
+
     &.expanded {
-      margin-left: calc(#{$sidebar-width} + 5rem); // Set the margin-left equal to the expanded width of the sidebar
+      left: calc(#{$sidebar-width} + 5rem); // Expanded state
     }
 
     &.collapsed {
-      margin-left: calc(#{$collapsed-sidebar-width} + 4rem); // When collapsed, set margin-left to collapsed width
+      left: calc(#{$collapsed-sidebar-width} + 4rem); // Collapsed state
     }
   }
 }

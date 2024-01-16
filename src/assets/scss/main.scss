@@ -6,5 +6,72 @@ body, html {
   padding: 0;
   width: 100%;
   height: 100%;
+  font-family: "NiftyFont", sans-serif !important;
+  font-size: x-large;
+  font-weight: normal;
+  text-transform: uppercase !important;
 }
+
+// Buttons
+
+// Base button style
+.button-white{
+    user-select: none; // Prevent text selection
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 0.8rem;
+    height: auto;
+    width: auto;
+    padding: 0.3rem 0.7rem 0.3rem 0.7rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    border: 2px solid transparent; // Important to override any existing border styles
+    font-family: "NiftyFont", Helvetica, Arial;
+    font-size: 30px;
+    background-color: #ffffff; // Golden color
+    color: black;
+    &:hover {
+        transform: scale(1.05); // Slightly grow the link on hover (0.1% larger)
+    }
+
+    &:active {
+        transform: scale(1); // Return to original size when clicked
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+// Gold-ish button style
+.button-gold{
+    user-select: none; // Prevent text selection
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 0.8rem;
+    height: auto;
+    width: auto;
+    padding: 0.3rem 0.7rem 0.3rem 0.7rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    border: 2px solid transparent; // Important to override any existing border styles
+    font-family: "NiftyFont", Helvetica, Arial;
+    font-size: 30px;
+    background-color: #fedf25; // Golden color
+    font-weight: bold;
+    &:hover {
+        transform: scale(1.05); // Slightly grow the link on hover (0.1% larger)
+    }
+
+    &:active {
+        transform: scale(1); // Return to original size when clicked
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
 

@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'NiftyFont';
+    src: url('niftyfont-regular-webfont.ttf') format('ttf'), 
+         url('niftyfont-regular-webfont.woff2') format('woff2'),
+         url('niftyfont-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
