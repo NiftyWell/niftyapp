@@ -89,7 +89,6 @@ onBeforeMount(async () => {
   }
   let waiting = 5;
   while (!account.logged() && waiting != 0) {
-    //account.value = await fetchAccount();
     await sleep(500);
     waiting -= 0.5;
   }
@@ -117,10 +116,10 @@ function logOut() {
     width: 100%;
     top: 0;
     background: $nifty-green;
-    z-index: 0; // Ensure the navbar is above other content
+    z-index: 0;
     display: flex;
     align-items: center;
-    justify-content: flex-start; // Align items to start of navbar
+    justify-content: flex-start;
     font-family: "NiftyFont", Helvetica, Arial;
     font-size: 30px;
     a {
@@ -129,7 +128,7 @@ function logOut() {
     }
 
     .logo {
-        margin: 0rem 2rem; // 2rem margin to the right of the logo
+        margin: 0rem 2rem;
         
     }
 
@@ -147,18 +146,17 @@ function logOut() {
             border-radius: 0.7rem;
                 padding: 0.4rem;
             &:hover, &.router-link-active {
-                transform: scale(1.02); // Scale up link on hover and when active
+                transform: scale(1.02);
                 box-shadow: rgba(0, 0, 0, 0.192) 0px 0px 10px 0px inset, rgba(0, 0, 0, 0.1) 0px 0px 0px 0px;
                 
             }
         }
     }
     .connect-button {
-        @extend .button-white; // Extend the golden button style with optional flag
-        // Additional styling specific to the navbar
-        text-decoration: none; // Remove underline from link
+        @extend .button-white;
+        text-decoration: none; 
         margin: 1rem 6rem 1rem auto;
-        display: inline-block; // Align properly with other nav items
+        display: inline-block; 
     }
 
 

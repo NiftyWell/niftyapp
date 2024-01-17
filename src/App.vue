@@ -3,10 +3,13 @@
     <Navbar />
     <Sidebar />
     <div class="content" :class="{ 'expanded': !mainStore.sidebarCollapsed, 'collapsed': mainStore.sidebarCollapsed }">
-      <router-view/>
+      <div class="content-container">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
+
 
 <script setup>
 import Navbar from './components/Navbar.vue';
@@ -25,10 +28,10 @@ const mainStore = useMainStore();
 
   .content {
     position: fixed;
-    top: calc($navbar-height + 52px); // Adjust as needed
+    top: calc($navbar-height + 52px); 
     right: 2rem;
     bottom: 1rem;
-    left: calc(#{$sidebar-width} + 5rem); // Default position (sidebar expanded)
+    left: calc(#{$sidebar-width} + 5rem); 
     z-index: 2;
     padding: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -37,12 +40,18 @@ const mainStore = useMainStore();
     transition: left 0.3s;
 
     &.expanded {
-      left: calc(#{$sidebar-width} + 5rem); // Expanded state
+      left: calc(#{$sidebar-width} + 5rem); 
     }
 
     &.collapsed {
-      left: calc(#{$collapsed-sidebar-width} + 4rem); // Collapsed state
+      left: calc(#{$collapsed-sidebar-width} + 4rem); 
     }
+  }
+
+  .content-container {
+    border-radius: 1rem; 
+    overflow: auto; 
+    height: 100%; 
   }
 }
 </style>
