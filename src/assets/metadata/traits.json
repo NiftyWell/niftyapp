@@ -1,0 +1,1688 @@
+[
+    {
+        "type": "Tail",
+        "traits": [
+            {
+                "name": "Bunny",
+                "type": "Tail"
+            },
+            {
+                "name": "Astronaut Blue",
+                "type": "Tail"
+            },
+            {
+                "name": "Astronaut Orange",
+                "type": "Tail"
+            },
+            {
+                "name": "Jester",
+                "type": "Tail"
+            },
+            {
+                "name": "Ninja",
+                "type": "Tail"
+            },
+            {
+                "name": "King",
+                "type": "Tail"
+            },
+            {
+                "name": "Hotdog",
+                "type": "Tail"
+            },
+            {
+                "name": "Sugar Cane",
+                "type": "Tail"
+            },
+            {
+                "name": "Ice",
+                "type": "Tail"
+            },
+            {
+                "name": "Spooky",
+                "type": "Tail"
+            },
+            {
+                "name": "Ace",
+                "type": "Tail"
+            },
+            {
+                "name": "Fire",
+                "type": "Tail"
+            },
+            {
+                "name": "Classic",
+                "type": "Tail"
+            },
+            {
+                "name": "Stegosaurus",
+                "type": "Tail"
+            },
+            {
+                "name": "Obelisk",
+                "type": "Tail"
+            },
+            {
+                "name": "Snake",
+                "type": "Tail"
+            },
+            {
+                "name": "Zombie",
+                "type": "Tail"
+            },
+            {
+                "name": "One Ring",
+                "type": "Tail"
+            },
+            {
+                "name": "Piercing",
+                "type": "Tail"
+            },
+            {
+                "name": "Lucky Charm",
+                "type": "Tail"
+            },
+            {
+                "name": "Ribbon",
+                "type": "Tail"
+            },
+            {
+                "name": "Battle Axe",
+                "type": "Tail"
+            },
+            {
+                "name": "Flower",
+                "type": "Tail"
+            },
+            {
+                "name": "NR1 Blue",
+                "type": "Tail"
+            },
+            {
+                "name": "NR1 Red",
+                "type": "Tail"
+            },
+            {
+                "name": "Tattoo",
+                "type": "Tail"
+            },
+            {
+                "name": "Knight",
+                "type": "Tail"
+            },
+            {
+                "name": "Dark Knight",
+                "type": "Tail"
+            },
+            {
+                "name": "Burglarex",
+                "type": "Tail"
+            },
+            {
+                "name": "Paleorex",
+                "type": "Tail"
+            },
+            {
+                "name": "Samurex Red",
+                "type": "Tail"
+            },
+            {
+                "name": "Samurex Blue",
+                "type": "Tail"
+            },
+            {
+                "name": "Samurex Black",
+                "type": "Tail"
+            },
+            {
+                "name": "Astrorex Black",
+                "type": "Tail"
+            },
+            {
+                "name": "Astrorex White",
+                "type": "Tail"
+            },
+            {
+                "name": "Portal Traveler",
+                "type": "Tail"
+            },
+            {
+                "name": "Mecha Green",
+                "type": "Tail"
+            },
+            {
+                "name": "Mecha White",
+                "type": "Tail"
+            },
+            {
+                "name": "Mecha Platinium",
+                "type": "Tail"
+            },
+            {
+                "name": "Mecha Red",
+                "type": "Tail"
+            },
+            {
+                "name": "Mecha Gold",
+                "type": "Tail"
+            },
+            {
+                "name": "Mummy",
+                "type": "Tail"
+            },
+            {
+                "name": "Neon Green",
+                "type": "Tail"
+            },
+            {
+                "name": "Neon Pink",
+                "type": "Tail"
+            },
+            {
+                "name": "Fossil",
+                "type": "Tail"
+            },
+            {
+                "name": "Strawberry Milkshake",
+                "type": "Tail"
+            },
+            {
+                "name": "Banana Milkshake",
+                "type": "Tail"
+            },
+            {
+                "name": "Gingerbread",
+                "type": "Tail"
+            },
+            {
+                "name": "Matrix",
+                "type": "Tail"
+            },
+            {
+                "name": "Radioactive",
+                "type": "Tail"
+            },
+            {
+                "name": "Alien",
+                "type": "Tail"
+            },
+            {
+                "name": "Candle",
+                "type": "Tail"
+            },
+            {
+                "name": "Gold",
+                "type": "Tail"
+            },
+            {
+                "name": "Toy",
+                "type": "Tail"
+            },
+            {
+                "name": "Cosmic",
+                "type": "Tail"
+            },
+            {
+                "name": "Gnogon",
+                "type": "Tail"
+            }
+        ]
+    },
+    {
+        "type": "Body",
+        "traits": [
+            {
+                "name": "Pink",
+                "type": "Body"
+            },
+            {
+                "name": "Peach",
+                "type": "Body"
+            },
+            {
+                "name": "Baby Blue",
+                "type": "Body"
+            },
+            {
+                "name": "Purple",
+                "type": "Body"
+            },
+            {
+                "name": "Yellow",
+                "type": "Body"
+            },
+            {
+                "name": "Ghost Blue",
+                "type": "Body"
+            },
+            {
+                "name": "Green",
+                "type": "Body"
+            },
+            {
+                "name": "Aqua",
+                "type": "Body"
+            },
+            {
+                "name": "Knight",
+                "type": "Body"
+            },
+            {
+                "name": "Dark Knight",
+                "type": "Body"
+            },
+            {
+                "name": "Burglarex",
+                "type": "Body"
+            },
+            {
+                "name": "Paleorex",
+                "type": "Body"
+            },
+            {
+                "name": "Samurex Red",
+                "type": "Body"
+            },
+            {
+                "name": "Samurex Blue",
+                "type": "Body"
+            },
+            {
+                "name": "Samurex Black",
+                "type": "Body"
+            },
+            {
+                "name": "Astrorex Black",
+                "type": "Body"
+            },
+            {
+                "name": "Astrorex White",
+                "type": "Body"
+            },
+            {
+                "name": "Portal Traveler",
+                "type": "Body"
+            },
+            {
+                "name": "Mecha Green",
+                "type": "Body"
+            },
+            {
+                "name": "Mecha White",
+                "type": "Body"
+            },
+            {
+                "name": "Mecha Platinium",
+                "type": "Body"
+            },
+            {
+                "name": "Mecha Red",
+                "type": "Body"
+            },
+            {
+                "name": "Mecha Gold",
+                "type": "Body"
+            },
+            {
+                "name": "Mummy",
+                "type": "Body"
+            },
+            {
+                "name": "Neon Green",
+                "type": "Body"
+            },
+            {
+                "name": "Neon Pink",
+                "type": "Body"
+            },
+            {
+                "name": "Fossil",
+                "type": "Body"
+            },
+            {
+                "name": "Strawberry Milkshake",
+                "type": "Body"
+            },
+            {
+                "name": "Banana Milkshake",
+                "type": "Body"
+            },
+            {
+                "name": "Gingerbread",
+                "type": "Body"
+            },
+            {
+                "name": "Matrix",
+                "type": "Body"
+            },
+            {
+                "name": "Radioactive",
+                "type": "Body"
+            },
+            {
+                "name": "Alien",
+                "type": "Body"
+            },
+            {
+                "name": "Candle",
+                "type": "Body"
+            },
+            {
+                "name": "Gold",
+                "type": "Body"
+            },
+            {
+                "name": "Toy",
+                "type": "Body"
+            },
+            {
+                "name": "Cosmic",
+                "type": "Body"
+            },
+            {
+                "name": "Gnogon",
+                "type": "Body"
+            }
+        ]
+    },
+    {
+        "type": "Shirt",
+        "traits": [
+            {
+                "name": "Bunny",
+                "type": "Shirt"
+            },
+            {
+                "name": "Astronaut Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Astronaut Orange",
+                "type": "Shirt"
+            },
+            {
+                "name": "Jester",
+                "type": "Shirt"
+            },
+            {
+                "name": "Ninja Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "King",
+                "type": "Shirt"
+            },
+            {
+                "name": "Cowboy",
+                "type": "Shirt"
+            },
+            {
+                "name": "Winter Yellow",
+                "type": "Shirt"
+            },
+            {
+                "name": "Lab Coat",
+                "type": "Shirt"
+            },
+            {
+                "name": "Office White",
+                "type": "Shirt"
+            },
+            {
+                "name": "Santa",
+                "type": "Shirt"
+            },
+            {
+                "name": "Punk",
+                "type": "Shirt"
+            },
+            {
+                "name": "Chef",
+                "type": "Shirt"
+            },
+            {
+                "name": "Flannel Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Tuxedo Pink",
+                "type": "Shirt"
+            },
+            {
+                "name": "Centurion",
+                "type": "Shirt"
+            },
+            {
+                "name": "Ninja Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Clown",
+                "type": "Shirt"
+            },
+            {
+                "name": "Shirt Yellow",
+                "type": "Shirt"
+            },
+            {
+                "name": "Stripes Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Christmas Elf",
+                "type": "Shirt"
+            },
+            {
+                "name": "Soldier Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Cupidon",
+                "type": "Shirt"
+            },
+            {
+                "name": "Viking",
+                "type": "Shirt"
+            },
+            {
+                "name": "Stripes Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Roman",
+                "type": "Shirt"
+            },
+            {
+                "name": "Hoodie Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Hoodie Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Firefighter",
+                "type": "Shirt"
+            },
+            {
+                "name": "Office Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Dress Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Werewolf",
+                "type": "Shirt"
+            },
+            {
+                "name": "Soldier Green",
+                "type": "Shirt"
+            },
+            {
+                "name": "Admiral Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Boxer Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Flannel Yellow",
+                "type": "Shirt"
+            },
+            {
+                "name": "American Football Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Hippie",
+                "type": "Shirt"
+            },
+            {
+                "name": "Pullover Brown",
+                "type": "Shirt"
+            },
+            {
+                "name": "Pharaoh",
+                "type": "Shirt"
+            },
+            {
+                "name": "T Shirt White",
+                "type": "Shirt"
+            },
+            {
+                "name": "Fur Coat",
+                "type": "Shirt"
+            },
+            {
+                "name": "Admiral White",
+                "type": "Shirt"
+            },
+            {
+                "name": "Admiral Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Robinhood",
+                "type": "Shirt"
+            },
+            {
+                "name": "Flames Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Zombie",
+                "type": "Shirt"
+            },
+            {
+                "name": "Winter Coat",
+                "type": "Shirt"
+            },
+            {
+                "name": "Baseball",
+                "type": "Shirt"
+            },
+            {
+                "name": "Tuxedo Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Dress White",
+                "type": "Shirt"
+            },
+            {
+                "name": "Winter Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Layering White",
+                "type": "Shirt"
+            },
+            {
+                "name": "Sorcerer",
+                "type": "Shirt"
+            },
+            {
+                "name": "Shirt Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Boxer Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Winter Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Bow Tie",
+                "type": "Shirt"
+            },
+            {
+                "name": "American Football Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Hercules",
+                "type": "Shirt"
+            },
+            {
+                "name": "Winter Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Flannel Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Tactical Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Chain",
+                "type": "Shirt"
+            },
+            {
+                "name": "Tactical Green",
+                "type": "Shirt"
+            },
+            {
+                "name": "Sukidayo",
+                "type": "Shirt"
+            },
+            {
+                "name": "Nurse",
+                "type": "Shirt"
+            },
+            {
+                "name": "Hoodie Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Pullover Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Tennis Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Biker",
+                "type": "Shirt"
+            },
+            {
+                "name": "Dress Pink",
+                "type": "Shirt"
+            },
+            {
+                "name": "Karate",
+                "type": "Shirt"
+            },
+            {
+                "name": "Flower",
+                "type": "Shirt"
+            },
+            {
+                "name": "Pullover Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Leather Shirt",
+                "type": "Shirt"
+            },
+            {
+                "name": "Pullover Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Flames Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Shirt Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Folk",
+                "type": "Shirt"
+            },
+            {
+                "name": "Shirt Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "T Shirt Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Hoodie Yellow",
+                "type": "Shirt"
+            },
+            {
+                "name": "Tennis Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Dacian",
+                "type": "Shirt"
+            },
+            {
+                "name": "Pirate",
+                "type": "Shirt"
+            },
+            {
+                "name": "Flannel Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Layering Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Layering Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Knight",
+                "type": "Shirt"
+            },
+            {
+                "name": "Dark Knight",
+                "type": "Shirt"
+            },
+            {
+                "name": "Burglarex",
+                "type": "Shirt"
+            },
+            {
+                "name": "Paleorex",
+                "type": "Shirt"
+            },
+            {
+                "name": "Samurex Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Samurex Blue",
+                "type": "Shirt"
+            },
+            {
+                "name": "Samurex Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Astrorex Black",
+                "type": "Shirt"
+            },
+            {
+                "name": "Astrorex White",
+                "type": "Shirt"
+            },
+            {
+                "name": "Portal Traveler",
+                "type": "Shirt"
+            },
+            {
+                "name": "Mecha Green",
+                "type": "Shirt"
+            },
+            {
+                "name": "Mecha White",
+                "type": "Shirt"
+            },
+            {
+                "name": "Mecha Platinium",
+                "type": "Shirt"
+            },
+            {
+                "name": "Mecha Red",
+                "type": "Shirt"
+            },
+            {
+                "name": "Mecha Gold",
+                "type": "Shirt"
+            },
+            {
+                "name": "Mummy",
+                "type": "Shirt"
+            },
+            {
+                "name": "Neon Green",
+                "type": "Shirt"
+            },
+            {
+                "name": "Neon Pink",
+                "type": "Shirt"
+            },
+            {
+                "name": "Fossil",
+                "type": "Shirt"
+            },
+            {
+                "name": "Strawberry Milkshake",
+                "type": "Shirt"
+            },
+            {
+                "name": "Banana Milkshake",
+                "type": "Shirt"
+            },
+            {
+                "name": "Gingerbread",
+                "type": "Shirt"
+            },
+            {
+                "name": "Matrix",
+                "type": "Shirt"
+            },
+            {
+                "name": "Radioactive",
+                "type": "Shirt"
+            },
+            {
+                "name": "Alien",
+                "type": "Shirt"
+            },
+            {
+                "name": "Candle",
+                "type": "Shirt"
+            },
+            {
+                "name": "Gold",
+                "type": "Shirt"
+            },
+            {
+                "name": "Toy",
+                "type": "Shirt"
+            },
+            {
+                "name": "Cosmic",
+                "type": "Shirt"
+            },
+            {
+                "name": "Gnogon",
+                "type": "Shirt"
+            }
+        ]
+    },
+    {
+        "type": "Face",
+        "traits": [
+            {
+                "name": "None",
+                "type": "Face"
+            },
+            {
+                "name": "Beard Brown",
+                "type": "Face"
+            },
+            {
+                "name": "Beard White",
+                "type": "Face"
+            },
+            {
+                "name": "Mustache White",
+                "type": "Face"
+            },
+            {
+                "name": "Mustache Brown",
+                "type": "Face"
+            },
+            {
+                "name": "Knight",
+                "type": "Face"
+            },
+            {
+                "name": "Dark Knight",
+                "type": "Face"
+            },
+            {
+                "name": "Burglarex",
+                "type": "Face"
+            },
+            {
+                "name": "Paleorex",
+                "type": "Face"
+            },
+            {
+                "name": "Samurex Red",
+                "type": "Face"
+            },
+            {
+                "name": "Samurex Blue",
+                "type": "Face"
+            },
+            {
+                "name": "Samurex Black",
+                "type": "Face"
+            },
+            {
+                "name": "Astrorex Black",
+                "type": "Face"
+            },
+            {
+                "name": "Astrorex White",
+                "type": "Face"
+            },
+            {
+                "name": "Portal Traveler",
+                "type": "Face"
+            },
+            {
+                "name": "Mecha Green",
+                "type": "Face"
+            },
+            {
+                "name": "Mecha White",
+                "type": "Face"
+            },
+            {
+                "name": "Mecha Platinium",
+                "type": "Face"
+            },
+            {
+                "name": "Mecha Red",
+                "type": "Face"
+            },
+            {
+                "name": "Mecha Gold",
+                "type": "Face"
+            },
+            {
+                "name": "Mummy",
+                "type": "Face"
+            },
+            {
+                "name": "Neon Green",
+                "type": "Face"
+            },
+            {
+                "name": "Neon Pink",
+                "type": "Face"
+            },
+            {
+                "name": "Fossil",
+                "type": "Face"
+            },
+            {
+                "name": "Strawberry Milkshake",
+                "type": "Face"
+            },
+            {
+                "name": "Banana Milkshake",
+                "type": "Face"
+            },
+            {
+                "name": "Gingerbread",
+                "type": "Face"
+            },
+            {
+                "name": "Matrix",
+                "type": "Face"
+            },
+            {
+                "name": "Radioactive",
+                "type": "Face"
+            },
+            {
+                "name": "Alien",
+                "type": "Face"
+            },
+            {
+                "name": "Candle",
+                "type": "Face"
+            },
+            {
+                "name": "Gold",
+                "type": "Face"
+            },
+            {
+                "name": "Toy",
+                "type": "Face"
+            },
+            {
+                "name": "Cosmic",
+                "type": "Face"
+            },
+            {
+                "name": "Gnogon",
+                "type": "Face"
+            }
+        ]
+    },
+    {
+        "type": "Eyes",
+        "traits": [
+            {
+                "name": "Laser",
+                "type": "Eyes"
+            },
+            {
+                "name": "Puppy",
+                "type": "Eyes"
+            },
+            {
+                "name": "Normal",
+                "type": "Eyes"
+            },
+            {
+                "name": "Scar",
+                "type": "Eyes"
+            },
+            {
+                "name": "Sunglasses Black",
+                "type": "Eyes"
+            },
+            {
+                "name": "Caffeine",
+                "type": "Eyes"
+            },
+            {
+                "name": "Sunglasses Heart",
+                "type": "Eyes"
+            },
+            {
+                "name": "Sleepy",
+                "type": "Eyes"
+            },
+            {
+                "name": "Dark Circles",
+                "type": "Eyes"
+            },
+            {
+                "name": "Doge",
+                "type": "Eyes"
+            },
+            {
+                "name": "Closed",
+                "type": "Eyes"
+            },
+            {
+                "name": "Sunglasses Pilot",
+                "type": "Eyes"
+            },
+            {
+                "name": "Frown",
+                "type": "Eyes"
+            },
+            {
+                "name": "Happy",
+                "type": "Eyes"
+            },
+            {
+                "name": "Star",
+                "type": "Eyes"
+            },
+            {
+                "name": "Monocle",
+                "type": "Eyes"
+            },
+            {
+                "name": "Dead",
+                "type": "Eyes"
+            },
+            {
+                "name": "Glasses",
+                "type": "Eyes"
+            },
+            {
+                "name": "Laughing",
+                "type": "Eyes"
+            },
+            {
+                "name": "Dizzy",
+                "type": "Eyes"
+            },
+            {
+                "name": "Sunglasses Hippie",
+                "type": "Eyes"
+            },
+            {
+                "name": "Egyptian",
+                "type": "Eyes"
+            },
+            {
+                "name": "Zero",
+                "type": "Eyes"
+            },
+            {
+                "name": "Lashes",
+                "type": "Eyes"
+            },
+            {
+                "name": "Lightning Bolt",
+                "type": "Eyes"
+            },
+            {
+                "name": "Zombie",
+                "type": "Eyes"
+            },
+            {
+                "name": "Knight",
+                "type": "Eyes"
+            },
+            {
+                "name": "Dark Knight",
+                "type": "Eyes"
+            },
+            {
+                "name": "Burglarex",
+                "type": "Eyes"
+            },
+            {
+                "name": "Paleorex",
+                "type": "Eyes"
+            },
+            {
+                "name": "Samurex Red",
+                "type": "Eyes"
+            },
+            {
+                "name": "Samurex Blue",
+                "type": "Eyes"
+            },
+            {
+                "name": "Samurex Black",
+                "type": "Eyes"
+            },
+            {
+                "name": "Astrorex Black",
+                "type": "Eyes"
+            },
+            {
+                "name": "Astrorex White",
+                "type": "Eyes"
+            },
+            {
+                "name": "Portal Traveler",
+                "type": "Eyes"
+            },
+            {
+                "name": "Mecha Green",
+                "type": "Eyes"
+            },
+            {
+                "name": "Mecha White",
+                "type": "Eyes"
+            },
+            {
+                "name": "Mecha Platinium",
+                "type": "Eyes"
+            },
+            {
+                "name": "Mecha Red",
+                "type": "Eyes"
+            },
+            {
+                "name": "Mecha Gold",
+                "type": "Eyes"
+            },
+            {
+                "name": "Mummy",
+                "type": "Eyes"
+            },
+            {
+                "name": "Neon Green",
+                "type": "Eyes"
+            },
+            {
+                "name": "Neon Pink",
+                "type": "Eyes"
+            },
+            {
+                "name": "Fossil",
+                "type": "Eyes"
+            },
+            {
+                "name": "Strawberry Milkshake",
+                "type": "Eyes"
+            },
+            {
+                "name": "Banana Milkshake",
+                "type": "Eyes"
+            },
+            {
+                "name": "Gingerbread",
+                "type": "Eyes"
+            },
+            {
+                "name": "Matrix",
+                "type": "Eyes"
+            },
+            {
+                "name": "Radioactive",
+                "type": "Eyes"
+            },
+            {
+                "name": "Alien",
+                "type": "Eyes"
+            },
+            {
+                "name": "Candle",
+                "type": "Eyes"
+            },
+            {
+                "name": "Gold",
+                "type": "Eyes"
+            },
+            {
+                "name": "Toy",
+                "type": "Eyes"
+            },
+            {
+                "name": "Cosmic",
+                "type": "Eyes"
+            },
+            {
+                "name": "Gnogon",
+                "type": "Eyes"
+            }
+        ]
+    },
+    {
+        "type": "Hat",
+        "traits": [
+            {
+                "name": "Soldier Pink",
+                "type": "Hat"
+            },
+            {
+                "name": "Admiral White",
+                "type": "Hat"
+            },
+            {
+                "name": "Bunny",
+                "type": "Hat"
+            },
+            {
+                "name": "Punk Pink",
+                "type": "Hat"
+            },
+            {
+                "name": "Crown",
+                "type": "Hat"
+            },
+            {
+                "name": "Afro",
+                "type": "Hat"
+            },
+            {
+                "name": "Flower",
+                "type": "Hat"
+            },
+            {
+                "name": "Granny",
+                "type": "Hat"
+            },
+            {
+                "name": "Bucket Hat Blue",
+                "type": "Hat"
+            },
+            {
+                "name": "Beanie Red",
+                "type": "Hat"
+            },
+            {
+                "name": "Cap Red",
+                "type": "Hat"
+            },
+            {
+                "name": "Nurse",
+                "type": "Hat"
+            },
+            {
+                "name": "Viking Horns",
+                "type": "Hat"
+            },
+            {
+                "name": "Admiral Black",
+                "type": "Hat"
+            },
+            {
+                "name": "Cupidon",
+                "type": "Hat"
+            },
+            {
+                "name": "Bow",
+                "type": "Hat"
+            },
+            {
+                "name": "Bucket Hat Yellow",
+                "type": "Hat"
+            },
+            {
+                "name": "Tophat Pink",
+                "type": "Hat"
+            },
+            {
+                "name": "Pharaoh",
+                "type": "Hat"
+            },
+            {
+                "name": "Ushanka",
+                "type": "Hat"
+            },
+            {
+                "name": "Jester",
+                "type": "Hat"
+            },
+            {
+                "name": "Pirate",
+                "type": "Hat"
+            },
+            {
+                "name": "Sunhat Straw",
+                "type": "Hat"
+            },
+            {
+                "name": "Zombie",
+                "type": "Hat"
+            },
+            {
+                "name": "American Football Red",
+                "type": "Hat"
+            },
+            {
+                "name": "Army Beret Green",
+                "type": "Hat"
+            },
+            {
+                "name": "Tennis Blue",
+                "type": "Hat"
+            },
+            {
+                "name": "Christmas Elf",
+                "type": "Hat"
+            },
+            {
+                "name": "Mad Scientist",
+                "type": "Hat"
+            },
+            {
+                "name": "Ninja Black",
+                "type": "Hat"
+            },
+            {
+                "name": "Headscarf Red",
+                "type": "Hat"
+            },
+            {
+                "name": "Dacian",
+                "type": "Hat"
+            },
+            {
+                "name": "Sunhat White",
+                "type": "Hat"
+            },
+            {
+                "name": "Army Beret Red",
+                "type": "Hat"
+            },
+            {
+                "name": "Beanie Blue",
+                "type": "Hat"
+            },
+            {
+                "name": "Cap White",
+                "type": "Hat"
+            },
+            {
+                "name": "Flower Crown",
+                "type": "Hat"
+            },
+            {
+                "name": "Astronaut Blue",
+                "type": "Hat"
+            },
+            {
+                "name": "Antlers",
+                "type": "Hat"
+            },
+            {
+                "name": "Beanie Black",
+                "type": "Hat"
+            },
+            {
+                "name": "Santa",
+                "type": "Hat"
+            },
+            {
+                "name": "Chef",
+                "type": "Hat"
+            },
+            {
+                "name": "Beret Black",
+                "type": "Hat"
+            },
+            {
+                "name": "Admiral Red",
+                "type": "Hat"
+            },
+            {
+                "name": "Centurion",
+                "type": "Hat"
+            },
+            {
+                "name": "Punk Green",
+                "type": "Hat"
+            },
+            {
+                "name": "Clown",
+                "type": "Hat"
+            },
+            {
+                "name": "Peacock",
+                "type": "Hat"
+            },
+            {
+                "name": "Clop",
+                "type": "Hat"
+            },
+            {
+                "name": "Astronaut Orange",
+                "type": "Hat"
+            },
+            {
+                "name": "Headscarf Black",
+                "type": "Hat"
+            },
+            {
+                "name": "Ninja Red",
+                "type": "Hat"
+            },
+            {
+                "name": "Laurel Crown Gold",
+                "type": "Hat"
+            },
+            {
+                "name": "Piercing",
+                "type": "Hat"
+            },
+            {
+                "name": "Biker",
+                "type": "Hat"
+            },
+            {
+                "name": "Soldier Black",
+                "type": "Hat"
+            },
+            {
+                "name": "American Football Blue",
+                "type": "Hat"
+            },
+            {
+                "name": "Cap Yellow",
+                "type": "Hat"
+            },
+            {
+                "name": "Beanie Brown",
+                "type": "Hat"
+            },
+            {
+                "name": "Robinhood",
+                "type": "Hat"
+            },
+            {
+                "name": "Sorcerer",
+                "type": "Hat"
+            },
+            {
+                "name": "Werewolf",
+                "type": "Hat"
+            },
+            {
+                "name": "Headscarf Blue",
+                "type": "Hat"
+            },
+            {
+                "name": "Cupidon Gold",
+                "type": "Hat"
+            },
+            {
+                "name": "Tophat Black",
+                "type": "Hat"
+            },
+            {
+                "name": "Hercules",
+                "type": "Hat"
+            },
+            {
+                "name": "Gallic",
+                "type": "Hat"
+            },
+            {
+                "name": "Bucket Hat Red",
+                "type": "Hat"
+            },
+            {
+                "name": "Beret Blue",
+                "type": "Hat"
+            },
+            {
+                "name": "Beret Yellow",
+                "type": "Hat"
+            },
+            {
+                "name": "Firefighter",
+                "type": "Hat"
+            },
+            {
+                "name": "Beret Pink",
+                "type": "Hat"
+            },
+            {
+                "name": "Sunhat Black",
+                "type": "Hat"
+            },
+            {
+                "name": "Coonskin Cap",
+                "type": "Hat"
+            },
+            {
+                "name": "Cowboy",
+                "type": "Hat"
+            },
+            {
+                "name": "Soldier Green",
+                "type": "Hat"
+            },
+            {
+                "name": "Tennis Red",
+                "type": "Hat"
+            },
+            {
+                "name": "Punk Purple",
+                "type": "Hat"
+            },
+            {
+                "name": "Fez",
+                "type": "Hat"
+            },
+            {
+                "name": "Hippie",
+                "type": "Hat"
+            },
+            {
+                "name": "Knight",
+                "type": "Hat"
+            },
+            {
+                "name": "Dark Knight",
+                "type": "Hat"
+            },
+            {
+                "name": "Burglarex",
+                "type": "Hat"
+            },
+            {
+                "name": "Paleorex",
+                "type": "Hat"
+            },
+            {
+                "name": "Samurex Red",
+                "type": "Hat"
+            },
+            {
+                "name": "Samurex Blue",
+                "type": "Hat"
+            },
+            {
+                "name": "Samurex Black",
+                "type": "Hat"
+            },
+            {
+                "name": "Astrorex Black",
+                "type": "Hat"
+            },
+            {
+                "name": "Astrorex White",
+                "type": "Hat"
+            },
+            {
+                "name": "Portal Traveler",
+                "type": "Hat"
+            },
+            {
+                "name": "Mecha Green",
+                "type": "Hat"
+            },
+            {
+                "name": "Mecha White",
+                "type": "Hat"
+            },
+            {
+                "name": "Mecha Platinium",
+                "type": "Hat"
+            },
+            {
+                "name": "Mecha Red",
+                "type": "Hat"
+            },
+            {
+                "name": "Mecha Gold",
+                "type": "Hat"
+            },
+            {
+                "name": "Mummy",
+                "type": "Hat"
+            },
+            {
+                "name": "Neon Green",
+                "type": "Hat"
+            },
+            {
+                "name": "Neon Pink",
+                "type": "Hat"
+            },
+            {
+                "name": "Fossil",
+                "type": "Hat"
+            },
+            {
+                "name": "Strawberry Milkshake",
+                "type": "Hat"
+            },
+            {
+                "name": "Banana Milkshake",
+                "type": "Hat"
+            },
+            {
+                "name": "Gingerbread",
+                "type": "Hat"
+            },
+            {
+                "name": "Matrix",
+                "type": "Hat"
+            },
+            {
+                "name": "Radioactive",
+                "type": "Hat"
+            },
+            {
+                "name": "Alien",
+                "type": "Hat"
+            },
+            {
+                "name": "Candle",
+                "type": "Hat"
+            },
+            {
+                "name": "Gold",
+                "type": "Hat"
+            },
+            {
+                "name": "Toy",
+                "type": "Hat"
+            },
+            {
+                "name": "Cosmic",
+                "type": "Hat"
+            },
+            {
+                "name": "Gnogon",
+                "type": "Hat"
+            }
+        ]
+    }
+]

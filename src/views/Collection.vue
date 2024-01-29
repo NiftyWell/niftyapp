@@ -1,70 +1,115 @@
 <template>
-    <div class="collection-container">
-        <h1 class="title">COLLECTION</h1>
-      <div class="collection-header">
-        <div class="menu-container">
-            <div class="menu-toggle">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-        </div>
-        
-        <div class="category-selectors">
-          <span class="category active">ALL</span>
-          <span class="category">OWNED</span>
-        </div>
-        <div class="search-bar">
-          <input type="text" placeholder="NUMBER, TRAIT, RANK">
-          <img src="@/assets/icons/search.svg" alt="Search" class="search-icon" />
+  <div class="collection-container">
+    <h1 class="title">COLLECTION</h1>
+    <div class="collection-header">
+      <div class="menu-container" @click="toggleFilters">
+        <div class="menu-toggle" :class="{'is-open': showFilters}">
+          <span class="arrow"></span>
         </div>
       </div>
-      <div class="collection">
-        <div v-for="(nft, index) in nftsToShow" :key="index">
-            <NftCard :nft="nft" />
-        </div>
-        <div v-if="showSeeMore" class="see-more" @click="loadMoreNfts">
-            <div class="see-more-bubble">
-                See more
-                <img src="@/assets/icons/arrow.svg" alt="See more" class="see-more-icon" />
-            </div>
-        </div>
+
+      <div class="category-selectors">
+        <span class="category active">ALL</span>
+        <span class="category" v-if="$erdAccount.address">OWNED</span>
+      </div>
+      <div class="search-bar">
+        <input type="text" v-model="searchQuery" placeholder="NUMBER, TRAIT, RANK" @keyup.enter="triggerSearch">
+        <img src="@/assets/icons/search.svg" alt="Search" class="search-icon" @click="triggerSearch">
+      </div>
     </div>
+    <TraitFilter v-if="showFilters" :allTraits="traitOptions" :selectedFilters="selectedFilters" @update:filters="updateFilters" />
+    <div class="collection">
+      <div v-for="(nft, index) in filteredNfts" :key="index">
+        <NftCard :nft="nft" />
+      </div>
+      <div v-if="showSeeMore && !searchQuery.value" class="see-more" @click="loadMoreNfts">
+        <div class="see-more-bubble">
+          See more
+          <img src="@/assets/icons/arrow.svg" alt="See more" class="see-more-icon" />
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue';
-import NftCard from '@/components/collection/Nftcard.vue';
+import NftCard from '@/components/collection/NftCard.vue';
+import TraitFilter from '@/components/collection/TraitFilter.vue';
 import metadata from '@/assets/metadata/metadata.json';
+import traitsData from '@/assets/metadata/traits.json';
+
+import { searchNfts } from '@/utils/search.ts';
 
 const nfts = metadata;
+const searchQuery = ref('');
+const performSearch = ref(false); 
+const showFilters = ref(false);
+
+const selectedFilters = ref({});
+
 const batchSize = ref(10);
 const currentBatch = ref(1);
 const screenWidth = ref(window.innerWidth);
 
+const traitOptions = traitsData.reduce((acc, { type, traits }) => {
+  acc[type] = traits.map(trait => trait.name);
+  return acc;
+}, {});
+
 const updateBatchSize = () => {
-    const cardWidth = 217;
-    const cardsPerRow = Math.floor(screenWidth.value*0.7 / cardWidth);
-    batchSize.value = cardsPerRow * 2; 
+  const cardWidth = 217;
+  const cardsPerRow = Math.floor(screenWidth.value * 0.7 / cardWidth);
+  batchSize.value = cardsPerRow * 2;
 };
 
-const nftsToShow = computed(() => {
-    return nfts.slice(0, currentBatch.value * batchSize.value);
+const triggerSearch = () => {
+  if (searchQuery.value.trim()) {
+    performSearch.value = !performSearch.value;
+  } else {
+    currentBatch.value = 1;
+  }
+};
+
+const updateFilters = (filters) => {
+  selectedFilters.value = filters;
+  performSearch.value = !performSearch.value;
+};
+
+const toggleFilters = () => {
+  showFilters.value = !showFilters.value;
+};
+
+const filteredNfts = computed(() => {
+  let filtered = nfts;
+
+  if (searchQuery.value.trim()) {
+    filtered = searchNfts(filtered, searchQuery.value.trim());
+  }
+
+  Object.entries(selectedFilters.value).forEach(([type, values]) => {
+    if (values && values.length > 0) {
+      filtered = filtered.filter(nft => 
+        nft.attributes.some(attr => attr.trait_type === type && values.includes(attr.value))
+      );
+    }
+  });
+
+  return filtered.slice(0, currentBatch.value * batchSize.value);
 });
 
-const showSeeMore = computed(() => {
-    return nfts.length > nftsToShow.value.length;
-});
+const showSeeMore = computed(() => nfts.length > filteredNfts.value.length);
 
 const loadMoreNfts = () => {
+  if (!searchQuery.value.trim()) {
     currentBatch.value += 1;
+  }
 };
 
 onMounted(updateBatchSize);
 watch(() => window.innerWidth, (newValue) => {
-    screenWidth.value = newValue;
-    updateBatchSize();
+  screenWidth.value = newValue;
+  updateBatchSize();
 });
 </script>
   
@@ -93,16 +138,23 @@ watch(() => window.innerWidth, (newValue) => {
     }
 
     .menu-toggle {
-      width: 1rem;
-      height: 0.7rem;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
+      width: 30px; /* Adjust size */
+      height: 30px; /* Adjust size */
       cursor: pointer;
+      .arrow {
+        border: solid black;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 3px;
+        transform: rotate(-45deg);
+        transition: transform 0.3s ease-in-out;
+      }
 
-      .line {
-        height: 3px;
-        background-color: black;
+      &.is-open .arrow {
+        transform: rotate(45deg);
       }
     }
 
