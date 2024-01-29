@@ -107,7 +107,7 @@ const removeTag = (type, value) => {
 <style scoped>
 .filter-section {
   display: flex;
-  flex-wrap: wrap; /* Allows filters to wrap to the next line if they exceed the container width */
+  flex-wrap: wrap; 
   gap: 1rem;
   justify-content: center;
   margin-top: 1.5rem;

@@ -141,8 +141,8 @@ watch(() => window.innerWidth, (newValue) => {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 30px; /* Adjust size */
-      height: 30px; /* Adjust size */
+      width: 30px; 
+      height: 30px; 
       cursor: pointer;
       .arrow {
         border: solid black;
@@ -179,21 +179,21 @@ watch(() => window.innerWidth, (newValue) => {
     }
 
     .search-bar {
-      flex-grow: 1; // Make the search bar take up all available space
+      flex-grow: 1;
       position: relative;
 
       input {
         font-family: "NiftyFont", sans-serif !important;
         font-size: larger;
-        width: 95%; // Make input take full width of parent
+        width: 95%; 
         border: none;
         padding: 0.5rem;
         border-radius: 20px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         &:focus {
-          outline: none; // Remove the default focus outline
-          border: none; // Remove the border on focus
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Apply the box-shadow on focus
+          outline: none; 
+          border: none; 
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
         }
       }
 
@@ -243,18 +243,18 @@ watch(() => window.innerWidth, (newValue) => {
 @media (max-width: 768px) {
   .collection-container {
     .collection-header {
-      flex-direction: column; // Change to column layout on mobile
+      flex-direction: column; 
 
       .menu-container {
-        margin-bottom: 1rem; // Add spacing between menu and category selectors
+        margin-bottom: 1rem; 
       }
 
       .category-selectors {
-        margin-left: 0; // Remove left margin on category selectors
+        margin-left: 0; 
       }
 
       .search-bar {
-        margin-top: 1rem; // Add top margin to the search bar
+        margin-top: 1rem; 
       }
     }
   }
