@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useVueErd } from 'vue-mvx';
 import { useMainStore } from '@/stores/mainStore';
 import metadata from '@/assets/metadata/metadata.json';
-import { NftMetadata, FetchedNft, TaleMetadata } from '@/types';
+import { NftMetadata, FetchedNft } from '@/types';
 import { decodeBase64, parseAttributes } from '@/utils/utils';
 
 export const useUserStore = defineStore('user', () => {
