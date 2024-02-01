@@ -1,3 +1,5 @@
+import { Attribute } from "@/types";
+
 const sleep = (n: number) => {
   return new Promise((resolve) => setTimeout(resolve, n));
 };
@@ -17,4 +19,15 @@ function stringToHex(string: string) {
     .join("");
 }
 
-export { sleep, intToHex, stringToHex };
+function decodeBase64(encodedString: string): string {
+  return Buffer.from(encodedString, 'base64').toString('utf8');
+}
+
+function parseAttributes(attributesString: string): Attribute[] {
+  return attributesString.split(';').map(attr => {
+      const [trait_type, value] = attr.split(':');
+      return { trait_type, value };
+  });
+}
+
+export { sleep, intToHex, stringToHex, decodeBase64, parseAttributes };

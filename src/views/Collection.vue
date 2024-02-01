@@ -9,8 +9,8 @@
       </div>
 
       <div class="category-selectors">
-        <span class="category active">ALL</span>
-        <span class="category" v-if="$erdAccount.address">OWNED</span>
+        <span class="category" :class="{ active: category === 'ALL' }" @click="setCategory('ALL')">ALL</span>
+        <span class="category" :class="{ active: category === 'OWNED' }" @click="setCategory('OWNED')" v-if="$erdAccount.address">OWNED</span>
       </div>
       <div class="search-bar">
         <input type="text" v-model="searchQuery" placeholder="NUMBER, TRAIT, RANK" @keyup.enter="triggerSearch">
@@ -38,10 +38,12 @@ import NftCard from '@/components/collection/NftCard.vue';
 import TraitFilter from '@/components/collection/TraitFilter.vue';
 import metadata from '@/assets/metadata/metadata.json';
 import traitsData from '@/assets/metadata/traits.json';
-
 import { searchNfts } from '@/utils/search.ts';
-
-const nfts = metadata;
+import { useUserStore } from '@/stores/userStore';
+import { useVueErd } from 'vue-mvx';
+const { account, erd, fetchAccount } = useVueErd();
+const userStore = useUserStore();
+const nfts = ref([...metadata]);
 const searchQuery = ref('');
 const performSearch = ref(false); 
 const showFilters = ref(false);
@@ -51,11 +53,33 @@ const selectedFilters = ref({});
 const batchSize = ref(10);
 const currentBatch = ref(1);
 const screenWidth = ref(window.innerWidth);
+const category = ref('ALL'); // New ref to track the current category
+
+watch(category, (newCategory) => {
+  if (newCategory === 'OWNED') {
+    nfts.value = [...userStore.walletNfts.rex, ...userStore.walletNfts.tale1, ...userStore.walletNfts.tale2];
+  } else {
+    nfts.value = [...metadata];
+  }
+});
+
+watch(account, async () => {
+  if (!account.logged()) {
+    category.value='ALL';
+  }
+});
+
 
 const traitOptions = traitsData.reduce((acc, { type, traits }) => {
   acc[type] = traits.map(trait => trait.name);
   return acc;
 }, {});
+
+const setCategory = (newCategory) => {
+  category.value = newCategory;
+  performSearch.value = false; // Reset search state when changing categories
+  currentBatch.value = 1; // Reset batch size when changing categories
+};
 
 const updateBatchSize = () => {
   const cardWidth = 217;
@@ -81,7 +105,7 @@ const toggleFilters = () => {
 };
 
 const filteredNfts = computed(() => {
-  let filtered = nfts;
+  let filtered = nfts.value;
 
   if (searchQuery.value.trim()) {
     filtered = searchNfts(filtered, searchQuery.value.trim());
@@ -98,7 +122,7 @@ const filteredNfts = computed(() => {
   return filtered.slice(0, currentBatch.value * batchSize.value);
 });
 
-const showSeeMore = computed(() => nfts.length > filteredNfts.value.length);
+const showSeeMore = computed(() => nfts.value.length > filteredNfts.value.length);
 
 const loadMoreNfts = () => {
   if (!searchQuery.value.trim()) {
@@ -212,33 +236,33 @@ watch(() => window.innerWidth, (newValue) => {
     justify-content: center;
     gap: 1rem;
     padding-bottom: 2rem; 
-}
+  }
 
-.see-more {
+  .see-more {
     width: 100%;
     display: flex;
     justify-content: center; 
 
     &-icon {
-        width: 1rem;
-        height: auto;
-        margin-left: 1rem;
-        transform: rotate(90deg); 
+      width: 1rem;
+      height: auto;
+      margin-left: 1rem;
+      transform: rotate(90deg); 
     }
     
     &-bubble {
-        text-align: center;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 1rem;
-        padding: 0.5rem 1rem; 
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); 
-        border-radius: 100px; 
-        background-color: #fff; 
+      text-align: center;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem; 
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); 
+      border-radius: 100px; 
+      background-color: #fff; 
     }
-}
+  }
 }
 @media (max-width: 768px) {
   .collection-container {

@@ -39,6 +39,7 @@ const props = defineProps({
 const search = reactive({});
 const dropdownVisible = reactive({});
 const filteredTraits = reactive({});
+let blurTimeoutId; // Variable to hold timeout ID
 
 // Initialize reactive properties for each trait type
 watchEffect(() => {
@@ -52,7 +53,6 @@ watchEffect(() => {
   });
 });
 
-// Update the filtered traits list based on the search input
 const filterTraits = (type) => {
   const searchTerm = search[type]?.toLowerCase() || '';
   filteredTraits[type] = props.allTraits[type].filter(trait =>
@@ -60,128 +60,128 @@ const filterTraits = (type) => {
   );
 };
 
-// Toggle the selection of a trait and reset the search input and filtered traits list
-const toggleSelection = (type, value) => {
+const toggleSelection = async (type, value) => {
+  clearTimeout(blurTimeoutId); // Clear the timeout to prevent dropdown from closing
   const index = props.selectedFilters[type].indexOf(value);
   if (index >= 0) {
     props.selectedFilters[type].splice(index, 1);
   } else {
     props.selectedFilters[type].push(value);
-    search[type] = '';
-    filteredTraits[type] = [...props.allTraits[type]];
-    dropdownVisible[type] = false; // Optionally hide the dropdown after selection
   }
+  search[type] = '';
+  filteredTraits[type] = [...props.allTraits[type]];
+  dropdownVisible[type] = false;
 };
 
-// Show the dropdown when the search input is focused
 const showDropdown = (type) => {
   dropdownVisible[type] = true;
 };
 
-// Handle the blur event to hide the dropdown if the focus is moved outside the search input
-const handleBlur = (type) => {
-  // Use a setTimeout to delay the check, allowing clicks on dropdown items to be registered before hiding it
-  setTimeout(() => {
+const handleBlur = (type, event) => {
+  blurTimeoutId = setTimeout(() => {
     dropdownVisible[type] = false;
-  }, 100);
+  }, 200); // Delay to allow click event registration
 };
 
-// Select the first trait in the filtered list when the Enter key is pressed
 const selectFirstTrait = (type) => {
   if (filteredTraits[type].length > 0) {
     toggleSelection(type, filteredTraits[type][0]);
   }
 };
 
-// Remove a selected tag
 const removeTag = (type, value) => {
   const index = props.selectedFilters[type].indexOf(value);
   if (index >= 0) {
     props.selectedFilters[type].splice(index, 1);
   }
 };
-
 </script>
 
 
-<style scoped>
+
+<style lang=scss scoped>
 .filter-section {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
   margin-top: 1.5rem;
   margin-bottom: 1rem;
+
+  .trait-filter {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      padding: 0.5rem;
+      height: 1rem;
+      min-width: 7rem;
+
+      input {
+        font-family: "NiftyFont", sans-serif !important;
+        font-size: medium;
+        text-transform: uppercase;
+        flex-grow: 1;
+        border: none;
+        background-color: transparent;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: 0.5rem;
+
+      .tag {
+        background-color: #007bff;
+        color: white;
+        border-radius: 4px;
+        font-size: medium;
+        padding: 0.1rem 0.2rem;
+        margin-right: 0.25rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .remove-tag {
+          display: inline-block;
+          margin-left: 0.5rem;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .dropdown-list {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      max-height: 160px;
+      overflow-y: auto;
+      z-index: 10;
+
+      div {
+        padding: 0.5rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #e7e7e7;
+        }
+      }
+    }
+  }
 }
 
-.trait-filter {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  background-color: #f0f0f0;
-  border-radius: 4px;
-  padding: 0.5rem;
-  height: 1rem;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 0.5rem;
-}
-
-.tag {
-  background-color: #007bff;
-  color: white;
-  border-radius: 4px;
-  font-size: medium;
-  padding: 0.1rem 0.2rem;
-  margin-right: 0.25rem;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.remove-tag {
-  display: inline-block;
-  margin-left: 0.5rem;
-  cursor: pointer;
-}
-
-.dropdown-list {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  max-height: 160px;
-  overflow-y: auto;
-  z-index: 10;
-}
-
-.dropdown-list div {
-  padding: 0.5rem;
-  cursor: pointer;
-}
-
-.dropdown-list div:hover {
-  background-color: #f0f0f0;
-}
-
-input[type="text"] {
-  flex-grow: 1;
-  border: none;
-  background-color: transparent;
-}
-
-input[type="text"]:focus {
-  outline: none;
-}
 </style>

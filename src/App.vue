@@ -12,10 +12,27 @@
 
 
 <script setup>
+import { onMounted, onBeforeMount, watch} from "vue";
 import Navbar from './components/Navbar.vue';
 import Sidebar from './components/Sidebar.vue';
 import { useMainStore} from '@/stores/mainStore';
+import { useUserStore} from '@/stores/userStore';
+import { useVueErd } from 'vue-mvx';
+const { account, erd, fetchAccount } = useVueErd();
+
 const mainStore = useMainStore();
+const userStore = useUserStore();
+onBeforeMount(async () => {
+  await userStore.loadWalletNfts(); // Load wallet NFTs when the app is mounted
+});
+
+watch(account, async () => {
+  if (account.logged()) {
+    await userStore.loadWalletNfts(); // Load wallet NFTs when the app is mounted
+  } else {
+    userStore.clearWallet();
+  }
+});
 </script>
 
 <style lang="scss">

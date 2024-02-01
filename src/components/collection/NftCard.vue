@@ -1,82 +1,64 @@
 <template>
-    <div>
-      <!-- NFT Card -->
-      <div @click="openModal" class="nft-card">
+  <div>
+    <!-- NFT Card -->
+    <div @click="openModal" class="nft-card">
+      <template v-if="isVideo(nft.image)">
+        <video :src="nft.image" alt="NFT Image" class="nft-image" loop muted playsinline></video>
+      </template>
+      <template v-else>
         <img :src="nft.image" alt="NFT Image" class="nft-image" />
-        <div class="nft-details">
-          <div class="nft-info">
-            <div class="nft-name">{{ nft.name.split("#")[0] }}</div>
-            <div>Rank #{{ nft.rank }}</div>
-          </div>
-          <div class="nft-number">#{{ nft.name.split("#")[1] }}</div>
+      </template>
+      <div class="nft-details">
+        <div class="nft-info">
+          <div class="nft-name">{{ nft.name.split("#")[0] }}</div>
+          <div>Rank #{{ nft.rank }}</div>
         </div>
+        <div class="nft-number">#{{ nft.name.split("#")[1] }}</div>
       </div>
-  
-      <!-- Modal for NFT details -->
-      <div v-if="showModal" class="modal" @click="closeModal">
-        <div class="modal-content" @click.stop>
-          <div class="nft-image-container">
-            <img :src="nft.image" alt="NFT Image" class="nft-image-modal" />
+    </div>
+
+    <!-- Modal for NFT details -->
+    <div v-if="showModal" class="modal" @click="closeModal">
+      <div class="modal-content" @click.stop>
+        <div class="nft-image-container">
+          <template v-if="isVideo(nft.image)">
+        <video :src="nft.image" alt="NFT Image" class="nft-image-modal" loop muted playsinline></video>
+      </template>
+      <template v-else>
+        <img :src="nft.image" alt="NFT Image" class="nft-image-modal" />
+      </template>
+        </div>
+        <div class="nft-modal-info">
+          <div class="nft-modal-header">
+            <h1 class="nft-modal-name">{{ nft.name }}</h1>
+            <h2 class="nft-modal-rank">Rank #{{ nft.rank }}</h2>
           </div>
-          <div class="nft-modal-info">
-            <div class="nft-modal-header">
-              <h1 class="nft-modal-name">{{ nft.name }}</h1>
-              <h2 class="nft-modal-rank">Rank #{{ nft.rank }}</h2>
-            </div>
-            <div class="nft-modal-attributes">
-              <table>
-                <!-- First row of attributes (3 attributes) -->
-                <tr class="attribute-row">
-                  <td class="attribute" v-if="getAttribute('Body')">
-                    <strong>Body</strong>
-                    <div>{{ getAttribute("Body") }}</div>
-                  </td>
-                  <td class="attribute" v-if="getAttribute('Tail')">
-                    <strong>Tail</strong>
-                    <div>{{ getAttribute("Tail") }}</div>
-                  </td>
-                  <td class="attribute" v-if="getAttribute('Shirt')">
-                    <strong>Shirt</strong>
-                    <div>{{ getAttribute("Shirt") }}</div>
-                  </td>
-                </tr>
-                <!-- Second row of attributes (3 attributes) -->
-                <tr class="attribute-row">
-                  <td class="attribute" v-if="getAttribute('Hat')">
-                    <strong>Hat</strong>
-                    <div>{{ getAttribute("Hat") }}</div>
-                  </td>
-                  <td class="attribute" v-if="getAttribute('Face')">
-                    <strong>Face</strong>
-                    <div>{{ getAttribute("Face") }}</div>
-                  </td>
-                  <td class="attribute" v-if="getAttribute('Eyes')">
-                    <strong>Eyes</strong>
-                    <div>{{ getAttribute("Eyes") }}</div>
-                  </td>
-                </tr>
-                <!-- Background attribute (full width) -->
-                <tr>
-                  <td colspan="3" class="attribute last-child" v-if="getAttribute('Background')">
-                    <strong>Background</strong>
-                    <div>{{ getAttribute("Background") }}</div>
-                  </td>
-                </tr>
-              </table>
-            </div>
+          <div class="nft-modal-attributes">
+            <table>
+              <tr v-for="(row, rowIndex) in attributesInRows" :key="rowIndex" class="attribute-row">
+                <td v-for="(attr, attrIndex) in row" :key="attrIndex" class="attribute">
+                  <strong>{{ attr.trait_type }}</strong> <!-- trait_type is naturally above value due to the block-level display -->
+                  <div>{{ attr.value }}</div> <!-- value is displayed below trait_type -->
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
     </div>
-  </template>
+  </div>
+</template>
+
   
   <script setup>
-  import { ref } from "vue";
-
+  import { ref, computed } from "vue";
+  
   const props = defineProps({
     nft: Object,
   });
-  
+  const isVideo = (url) => {
+    return url.match(/\.(mp4)$/i) != null;
+  };
   const showModal = ref(false);
   
   const openModal = () => {
@@ -86,13 +68,28 @@
   const closeModal = () => {
     showModal.value = false;
   };
-  const getAttribute = (type) => {
-    const attribute = props.nft.attributes.find(
-      (attr) => attr.trait_type === type,
-    );
-    return attribute ? attribute.value : null;
+  
+  // Organize attributes into rows for display
+  const attributesInRows = computed(() => {
+    const rows = [];
+    const attributesPerRow = 3; // Number of attributes per row
+  
+    for (let i = 0; i < props.nft.attributes.length; i += attributesPerRow) {
+      rows.push(props.nft.attributes.slice(i, i + attributesPerRow));
+    }
+  
+    return rows;
+  });
+  
+  const decToHex = (dec) => {
+    let hex = dec.toString(16);
+    if (hex.length % 2 !== 0) {
+      hex = '0' + hex;
+    }
+    return hex;
   };
   </script>
+  
   
   <style lang="scss" scoped>
   .nft {
@@ -168,11 +165,24 @@
     }
   }
   .attribute {
+    flex-grow: 1; /* Allow attribute to grow and take available space */
     background-color: #eeeeee;
     border-radius: 0.3rem;
     padding: 0.5rem;
-    margin: 0.5rem 0; 
+    margin: 0.1rem;
+    text-align: center;
+
+    /* Use flexbox to evenly distribute space when there are fewer than 3 attributes */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
     }
+  }
   .nft {
     &-image {
       &-modal {
