@@ -35,7 +35,7 @@ export const useUserStore = defineStore('user', () => {
       await fetchAccount(); // Ensure the account is fetched before making the call
       try {
         clearWallet();
-        const collectionsUrl = `${erd.providers.api.url}/accounts/${/*account.address*/'erd1ct86m5x3w60epnny9us89uqpysjpefuncx82ldhd2l4mznq2rt9q9eh9qx'}/nfts?size=10000&collections=${ticker.rex},${ticker.tales},${ticker.puzzle}`;
+        const collectionsUrl = `${erd.providers.api.url}/accounts/${account.address}/nfts?size=10000&collections=${ticker.rex},${ticker.tales},${ticker.puzzle}`;
         const { data: fetchedNFTs } = await axios.get<FetchedNft[]>(collectionsUrl);
         fetchedNFTs.forEach((nft) => {
             if (nft.collection === ticker.rex) {
