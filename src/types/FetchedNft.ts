@@ -24,6 +24,7 @@ export interface FetchedNft {
     rarities: NftRarities;
     isNsfw: boolean;
     assets: NftAssets;
+    balance?: number; // Optional balance attribute for puzzle pieces
   }
   
   export interface NftMedia {

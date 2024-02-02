@@ -57,7 +57,19 @@ const category = ref('ALL'); // New ref to track the current category
 
 watch(category, (newCategory) => {
   if (newCategory === 'OWNED') {
-    nfts.value = [...userStore.walletNfts.rex, ...userStore.walletNfts.tale1, ...userStore.walletNfts.tale2];
+    const ownedNfts = [...userStore.walletNfts.rex];
+
+    // Loop through each key in the 'tale' object to gather all NFTs across editions
+    for (const edition of Object.keys(userStore.walletNfts.tale)) {
+      ownedNfts.push(...userStore.walletNfts.tale[edition]);
+    }
+
+    // Assuming a similar structure for 'puzzle' as well
+    for (const edition of Object.keys(userStore.walletNfts.puzzle)) {
+      ownedNfts.push(...userStore.walletNfts.puzzle[edition]);
+    }
+
+    nfts.value = ownedNfts;
   } else {
     nfts.value = [...metadata];
   }

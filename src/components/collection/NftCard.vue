@@ -10,10 +10,11 @@
       </template>
       <div class="nft-details">
         <div class="nft-info">
-          <div class="nft-name">{{ nft.name.split("#")[0] }}</div>
-          <div>Rank #{{ nft.rank }}</div>
+          <div class="nft-name">{{ splitName(nft.name).left }}</div>
+          <div v-if="nft.type==='SemiFungibleESDT'">X{{ nft.balance }}</div>
+          <div v-else>Rank #{{ nft.rank }}</div>
         </div>
-        <div class="nft-number">#{{ nft.name.split("#")[1] }}</div>
+        <div class="nft-number" v-if="splitName(nft.name).right">#{{ splitName(nft.name).right }}</div>
       </div>
     </div>
 
@@ -53,6 +54,22 @@
   <script setup>
   import { ref, computed } from "vue";
   
+  // Method to split NFT name based on '#'
+  const splitName = (name) => {
+    const parts = name.split('#');
+    if (parts.length >= 3) {
+      return {
+        left: parts.slice(0, 2).join('#'), // Join the first two parts (or just the first if only one '#')
+        right: parts[2] || '', // The part after the second '#', if present
+      };
+    }
+    return {
+      left: parts.slice(0, 1).join('#'), // Join the first two parts (or just the first if only one '#')
+      right: parts[1] || '', // The part after the second '#', if present
+    };
+
+  };
+
   const props = defineProps({
     nft: Object,
   });

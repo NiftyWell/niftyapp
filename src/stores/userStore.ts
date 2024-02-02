@@ -8,80 +8,93 @@ import { NftMetadata, FetchedNft } from '@/types';
 import { decodeBase64, parseAttributes } from '@/utils/utils';
 
 export const useUserStore = defineStore('user', () => {
+  const { account, erd, fetchAccount } = useVueErd();
   const mainStore = useMainStore();
   const nfts = ref<NftMetadata[]>(metadata as NftMetadata[]);
   const ticker = mainStore.ticker;
-  const walletNfts = ref<{ rex: NftMetadata[]; tale1: NftMetadata[]; tale2: NftMetadata[] }>({
+  const walletNfts = ref<{
+    rex: NftMetadata[];
+    tale: { [key: number]: NftMetadata[] };
+    puzzle: { [key: number]: NftMetadata[] };
+  }>({
     rex: [],
-    tale1: [],
-    tale2: [],
+    tale: {},
+    puzzle: {},
   });
-  const { account, erd, fetchAccount } = useVueErd();
+  
   const clearWallet = () => {
     walletNfts.value = {
         rex: [],
-        tale1: [],
-        tale2: [],
+        tale: {},
+        puzzle: {},
       };
   }
 
   const loadWalletNfts = async () => {
     if (account.logged() && account.address) {
-        await fetchAccount();  // Ensure the account is fetched before making the call
-    try {
-        const collectionsUrl = `${erd.providers.api.url}/accounts/${account.address}/nfts?size=10000&collections=${ticker.rex},${ticker.tales}`;
+      await fetchAccount(); // Ensure the account is fetched before making the call
+      try {
+        clearWallet();
+        const collectionsUrl = `${erd.providers.api.url}/accounts/${/*account.address*/'erd1ct86m5x3w60epnny9us89uqpysjpefuncx82ldhd2l4mznq2rt9q9eh9qx'}/nfts?size=10000&collections=${ticker.rex},${ticker.tales},${ticker.puzzle}`;
         const { data: fetchedNFTs } = await axios.get<FetchedNft[]>(collectionsUrl);
-
         fetchedNFTs.forEach((nft) => {
-          if (nft.collection === ticker.rex) {
-            const matchingMetadata = nfts.value.find((meta) => meta.edition === nft.nonce);
-            if (matchingMetadata) {
-              walletNfts.value.rex.push(matchingMetadata);
-            }
-          } else if (nft.collection === ticker.tales) { 
-            if (Object.keys(nft.metadata).length === 0 && nft.attributes) {
-                // Decode the Base64 encoded attributes
-                const decodedAttributes = decodeBase64(nft.attributes);
-                // Parse the decoded attributes into an array of Attribute objects
-                const attributes = parseAttributes(decodedAttributes);
-            
-                // Extract tags from the attributes (if present)
-                const tags = attributes.find(attr => attr.trait_type.toLowerCase() === 'tags')?.value || '';
-            
-                // Construct the NftMetadata object
-                const newNftMetadata: NftMetadata = {
-                    description: nft.name, // Use NFT name as description
-                    name: nft.name,
-                    edition: nft.nonce,
-                    dna: '', // DNA can be an empty string
-                    image: nft.url,
-                    attributes: attributes.filter(attr => attr.trait_type.toLowerCase() !== 'tags'), // Exclude tags from attributes
-                    tags: tags,
-                    rank: nft.nonce,
-                    minted: 'true', // Assuming minted is always true for these NFTs
-                    market: 'false', // Assuming these NFTs are not in the market
+            if (nft.collection === ticker.rex) {
+              const matchingMetadata = nfts.value.find((meta) => meta.edition === nft.nonce);
+              if (matchingMetadata) {
+                matchingMetadata.type = "NonFungibleESDT";
+                walletNfts.value.rex.push(matchingMetadata);
+              }
+            } else if (nft.collection === ticker.tales || nft.collection === ticker.puzzle) {
+              const decodedAttributes = decodeBase64(nft.attributes);
+              const attributes = parseAttributes(decodedAttributes);
+              const tags = attributes.find((attr) => attr.trait_type.toLowerCase() === 'tags')?.value || '';
+              
+              let newNftMetadata;
+              
+              if (Object.keys(nft.metadata).length === 0) {
+                // If nft.metadata is an empty object, add the balance based on nft.type
+                newNftMetadata = {
+                  description: nft.name,
+                  name: nft.name,
+                  edition: nft.nonce,
+                  dna: '',
+                  image: nft.url,
+                  attributes: attributes.filter((attr) => attr.trait_type.toLowerCase() !== 'tags'),
+                  tags: tags,
+                  rank: nft.nonce,
+                  minted: 'true',
+                  market: 'false',
+                  balance: nft.type === 'NonFungibleESDT' ? 1 : nft.balance, // Set balance based on nft.type
+                  type: nft.type,
                 };
-            
-                // Use taleVersion to determine which array to push to
-                const taleVersion = nft.nonce <= 400 ? 'tale1' : 'tale2';
-                walletNfts.value[taleVersion].push(newNftMetadata);
+              } else {
+                // If nft.metadata is not an empty object, use it as is
+                newNftMetadata = nft.metadata;
+                newNftMetadata.type = nft.type;
+                newNftMetadata.balance = nft.type === 'NonFungibleESDT' ? 1 : nft.balance; // Set balance based on nft.type
+                newNftMetadata.rank = nft.rank;
+                console.log("newNftMetadata is:", newNftMetadata);
+              }
+              
+              // Extract edition number from NFT name
+              const editionMatch = nft.name.match(/#(\d+)/);
+              const edition = editionMatch ? parseInt(editionMatch[1], 10) : 1; // Default to 1 if not found
+          
+              const collectionType = nft.collection === ticker.tales ? 'tale' : 'puzzle';
+          
+              if (!walletNfts.value[collectionType][edition]) {
+                walletNfts.value[collectionType][edition] = [];
+              }
+          
+              walletNfts.value[collectionType][edition].push(newNftMetadata);
             }
-            else {
-                if (nft.metadata) {
-                    const niftyTaleAttribute = nft.metadata.attributes.find(attribute => attribute.trait_type === 'Nifty Tale');
-                    if (niftyTaleAttribute && niftyTaleAttribute.value) {
-                      const taleVersion = 'tale'+niftyTaleAttribute.value.slice(1);
-                      (walletNfts.value as { [key: string]: any })[taleVersion].push(nft.metadata);
-                    }
-                }
-            }
-          }
-        });
+          });
       } catch (err) {
-        console.error('Error loading balance NFTs:', err);
+        console.error('Error loading wallet NFTs:', err);
       }
     }
   };
+  
 
 
   const loadStakedNfts = async () => {}

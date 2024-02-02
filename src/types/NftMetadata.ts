@@ -1,3 +1,4 @@
+
 export interface NftMetadata {
     description: string;
     name: string;
@@ -9,18 +10,11 @@ export interface NftMetadata {
     rank: number;
     minted: string;
     market: string;
+    balance?: number; // Optional balance attribute for puzzle pieces
+    type?: string; // Add the type here using the enum
 }
 
 export interface Attribute {
     trait_type: string;
     value: string;
 }
-
-export interface TaleMetadata {
-    name: number;
-    nonce: number;
-    ticker: string;
-    media: string;
-    tale: number;
-}
-

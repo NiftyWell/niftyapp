@@ -7,6 +7,7 @@ export const useMainStore = defineStore('mainStore', () => {
         rex: 'NIFTYREX-d8c812',
         tales: 'NFTTALES-636b0e',
         token: 'NFTBIT-6b732e',
+        puzzle: 'NFTPUZZLES-290ada',
       });
 
     const sidebarCollapsed = ref(false);
