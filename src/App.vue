@@ -23,12 +23,12 @@ const { account, erd, fetchAccount } = useVueErd();
 const mainStore = useMainStore();
 const userStore = useUserStore();
 onBeforeMount(async () => {
-  await userStore.loadWalletNfts(); // Load wallet NFTs when the app is mounted
+  await userStore.initUser(); // Load wallet NFTs when the app is mounted
 });
 
 watch(account, async () => {
   if (account.logged()) {
-    await userStore.loadWalletNfts(); // Load wallet NFTs when the app is mounted
+    await userStore.initUser(); // Load wallet NFTs when the app is mounted
   } else {
     userStore.clearWallet();
   }

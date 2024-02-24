@@ -1,0 +1,439 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.64.0-nightly",
+            "commitHash": "1517f5de01c445b5124b30f02257b02b4c5ef3b2",
+            "commitDate": "2022-07-07",
+            "channel": "Nightly",
+            "short": "rustc 1.64.0-nightly (1517f5de0 2022-07-07)"
+        },
+        "contractCrate": {
+            "name": "nifty-staking",
+            "version": "0.0.0"
+        },
+        "framework": {
+            "name": "elrond-wasm",
+            "version": "0.34.0"
+        }
+    },
+    "name": "Staking",
+    "constructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "setStatus",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "status",
+                    "type": "Status"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "registerNewPool",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "coll_ticker",
+                    "type": "TokenIdentifier"
+                },
+                {
+                    "name": "pool_id",
+                    "type": "u64"
+                },
+                {
+                    "name": "first_nonce",
+                    "type": "u64"
+                },
+                {
+                    "name": "last_nonce",
+                    "type": "u64"
+                },
+                {
+                    "name": "reward_per_nft",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "unbonding_time",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "removePool",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "pool_id",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "updatePoolRewards",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "pool_id",
+                    "type": "u64"
+                },
+                {
+                    "name": "reward_per_nft",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "updatePoolUnbonding",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "pool_id",
+                    "type": "u64"
+                },
+                {
+                    "name": "duration",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "updatePoolNonces",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "pool_id",
+                    "type": "u64"
+                },
+                {
+                    "name": "first_nonce",
+                    "type": "u64"
+                },
+                {
+                    "name": "last_nonce",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "updatePoolTicker",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "pool_id",
+                    "type": "u64"
+                },
+                {
+                    "name": "new_ticker",
+                    "type": "TokenIdentifier"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "registerRewardToken",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "ticker",
+                    "type": "TokenIdentifier"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "fundRewards",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "claimFundingRewards",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "multiStakeNFTS",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [
+                {
+                    "name": "pool_id",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "unstakeNFTS",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "args",
+                    "type": "variadic<multi<TokenIdentifier,u64>>",
+                    "multi_arg": true
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "claimUnstakedNFTS",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "claimRewards",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "adminClaimUserNFTs",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "from_user",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getStatus",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "Status"
+                }
+            ]
+        },
+        {
+            "name": "getAcceptedRewardToken",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "TokenIdentifier"
+                }
+            ]
+        },
+        {
+            "name": "getUserRewards",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "name": "getRegisteredPools",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "pool_id",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "Pool"
+                }
+            ]
+        },
+        {
+            "name": "getPoolsCount",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "getPoolNftQuantity",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "pool_id",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "getUserStakedNFT",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "variadic<StakedNFT>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "name": "getUserUnstakedNFT",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "variadic<UnstakedNFT>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "name": "getStakingUsers",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "variadic<Address>",
+                    "multi_result": true
+                }
+            ]
+        }
+    ],
+    "events": [],
+    "hasCallback": false,
+    "types": {
+        "Pool": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "u64"
+                },
+                {
+                    "name": "ticker",
+                    "type": "TokenIdentifier"
+                },
+                {
+                    "name": "start_nonce",
+                    "type": "u64"
+                },
+                {
+                    "name": "end_nonce",
+                    "type": "u64"
+                },
+                {
+                    "name": "reward",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "duration_in_seconds",
+                    "type": "u64"
+                }
+            ]
+        },
+        "StakedNFT": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "ticker",
+                    "type": "TokenIdentifier"
+                },
+                {
+                    "name": "nonce",
+                    "type": "u64"
+                },
+                {
+                    "name": "pool_id",
+                    "type": "u64"
+                },
+                {
+                    "name": "epoch",
+                    "type": "u64"
+                },
+                {
+                    "name": "last_claim_epoch",
+                    "type": "u64"
+                }
+            ]
+        },
+        "Status": {
+            "type": "enum",
+            "variants": [
+                {
+                    "name": "Frozen",
+                    "discriminant": 0
+                },
+                {
+                    "name": "Public",
+                    "discriminant": 1
+                }
+            ]
+        },
+        "UnstakedNFT": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "ticker",
+                    "type": "TokenIdentifier"
+                },
+                {
+                    "name": "nonce",
+                    "type": "u64"
+                },
+                {
+                    "name": "unstake_timestamp",
+                    "type": "u64"
+                },
+                {
+                    "name": "old_pool_id",
+                    "type": "u64"
+                }
+            ]
+        }
+    }
+}

@@ -3,14 +3,18 @@ import { ref } from 'vue';
 import axios from 'axios';
 import { useVueErd } from 'vue-mvx';
 import { useMainStore } from '@/stores/mainStore';
+import { useStakingContractStore } from './contracts/stakingContractStore';
 import metadata from '@/assets/metadata/metadata.json';
+import other_metadata from '@/assets/metadata/other/metadata.json';
 import { NftMetadata, FetchedNft } from '@/types';
 import { decodeBase64, parseAttributes } from '@/utils/utils';
 
 export const useUserStore = defineStore('user', () => {
   const { account, erd, fetchAccount } = useVueErd();
   const mainStore = useMainStore();
+  const stakingStore = useStakingContractStore();
   const nfts = ref<NftMetadata[]>(metadata as NftMetadata[]);
+  const other_nfts = ref<Record<string, NftMetadata>>(other_metadata as Record<string, NftMetadata>);
   const ticker = mainStore.ticker;
   const walletNfts = ref<{
     rex: NftMetadata[];
@@ -21,6 +25,15 @@ export const useUserStore = defineStore('user', () => {
     tale: {},
     puzzle: {},
   });
+
+  const stakedNfts = ref<{
+    rex: NftMetadata[];
+    tale: { [key: number]: NftMetadata[] };
+  }>({
+    rex: [],
+    tale: {},
+  });
+
   
   const clearWallet = () => {
     walletNfts.value = {
@@ -28,8 +41,20 @@ export const useUserStore = defineStore('user', () => {
         tale: {},
         puzzle: {},
       };
+    stakedNfts.value = {
+      rex: [],
+      tale: {},
+    };
   }
 
+  const initUser = async () => {
+    if (account.logged() && account.address) {
+    stakingStore.initializeContract()
+    await loadWalletNfts();
+    await loadStakedNfts();
+    }
+  }
+  
   const loadWalletNfts = async () => {
     if (account.logged() && account.address) {
       await fetchAccount(); // Ensure the account is fetched before making the call
@@ -73,7 +98,6 @@ export const useUserStore = defineStore('user', () => {
                 newNftMetadata.type = nft.type;
                 newNftMetadata.balance = nft.type === 'NonFungibleESDT' ? 1 : nft.balance; // Set balance based on nft.type
                 newNftMetadata.rank = nft.rank;
-                console.log("newNftMetadata is:", newNftMetadata);
               }
               
               // Extract edition number from NFT name
@@ -97,8 +121,37 @@ export const useUserStore = defineStore('user', () => {
   
 
 
-  const loadStakedNfts = async () => {}
+  const loadStakedNfts = async () => {
+    const stakedData = await stakingStore.getStakedData(); // Fetch staked NFTs data
+    stakedData.map((nft: any) => {
+      const poolId = parseInt(nft.pool_id, 10);
+      const editionNumber = parseInt(nft.nonce, 10);
 
+      if (poolId > 0) {
+        const taleKey = `NiftyTale#${poolId}`;
+        const taleMetadata = (other_nfts.value as Record<string, NftMetadata>)[taleKey];
+        if (taleMetadata) { 
+          let matchingMetadata: NftMetadata | null = null; 
+          matchingMetadata = { ...taleMetadata };
+          matchingMetadata.edition = nft.nonce;
+          matchingMetadata.rank = nft.nonce;
+          matchingMetadata.status = "staked";
+          if (!stakedNfts.value['tale'][poolId]) {
+            stakedNfts.value['tale'][poolId] = [];
+          }
+          stakedNfts.value['tale'][poolId].push(matchingMetadata);
+        }
+      }
+      else {
+        let matchingMetadata: NftMetadata | null = null;
+        const foundMetadata = nfts.value.find((meta) => meta.edition === editionNumber);
+        if (foundMetadata) { 
+          matchingMetadata = { ...foundMetadata, status: "staked" }; 
+          stakedNfts.value.rex.push(matchingMetadata);
+        } 
+      }
+    });
+  };
 
-  return { walletNfts, loadWalletNfts, loadStakedNfts, clearWallet };
+  return { walletNfts, stakedNfts, initUser, loadWalletNfts, loadStakedNfts, clearWallet };
 });

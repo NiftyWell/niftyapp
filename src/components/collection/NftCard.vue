@@ -2,11 +2,14 @@
   <div>
     <!-- NFT Card -->
     <div @click="openModal" class="nft-card">
+      <div v-if="nft.status ==='staked'" class="ribbon ribbon-top-right">
+        <span>{{ "Staked" }}</span>
+      </div>
       <template v-if="isVideo(nft.image)">
         <video :src="nft.image" alt="NFT Image" class="nft-image" loop muted playsinline></video>
       </template>
       <template v-else>
-        <img :src="nft.image" alt="NFT Image" class="nft-image" />
+        <img v-lazy="nft.image" alt="NFT Image" class="nft-image" />
       </template>
       <div class="nft-details">
         <div class="nft-info">
@@ -53,7 +56,7 @@
   
   <script setup>
   import { ref, computed } from "vue";
-  
+
   // Method to split NFT name based on '#'
   const splitName = (name) => {
     const parts = name.split('#');
@@ -121,6 +124,7 @@
     }
     &-card {
       padding: 0.3rem;
+      position: relative;
       margin: 0.25rem;
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.07);
       border-radius: 10px;
@@ -263,5 +267,64 @@
       width: auto; 
     }
   }
+
+  .ribbon {
+  user-select: none;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: absolute;
+  width: 112px !important; // You have two width declarations, consider which one is necessary
+  height: 112px !important; // Same as above for height
+
+  &::before,
+  &::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    display: block;
+    border: 5px solid #296877;
+  }
+
+  span {
+    position: absolute;
+    display: block;
+    width: 225px;
+    padding: 15px 0;
+    background: linear-gradient(54.65deg, #9cd7e6 10.41%, #c4f3ff 28.41%, #9adff0 46.71%, #66bed4 68.01%);
+    color: rgb(255, 255, 255);
+    font-size: larger;
+    text-shadow: 0 1px 1px rgba(0,0,0,.2);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  &-top-right {
+    top: -10px;
+    right: -10px;
+
+    span {
+      left: -45px; 
+      top: 17px; 
+      transform: rotate(45deg);
+      padding: 7px !important; 
+    }
+
+    &::before {
+      left: 11px !important; 
+      border-top-color: transparent;
+      border-right-color: transparent;
+      top: 0;
+    }
+
+    &::after {
+      bottom: 11px !important; 
+      border-top-color: transparent;
+      border-right-color: transparent;
+      right: 0; 
+    }
+  }
+}
+
   </style>
   

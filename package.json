@@ -9,12 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@multiversx/sdk-core": "^12.18.1",
     "mixin": "^0.2.0",
     "pinia": "^2.1.7",
     "qr-code-styling": "^1.6.0-rc.1",
     "vue": "^3.3.11",
     "vue-mvx": "^2.1.0",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vue3-lazyload": "^0.3.8"
   },
   "devDependencies": {
     "@types/node": "^20.11.3",

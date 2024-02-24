@@ -1,0 +1,56 @@
+{
+    "NiftyTale#1": {
+        "name": "Nifty Tale #2",
+        "edition": 0,
+        "description": "Collect Nifty Puzzle Pieces to win Nifty Tales NFTs!",
+        "image": "https://ipfs.io/ipfs/QmPttJb5eYpTFGvWDCbupPzhK57W6AD2xf737y2o6r62LD/NiftyTale1.mp4",
+        "dna": "",
+        "attributes": [
+        {
+            "trait_type": "Nifty Tale",
+            "value": "#1"
+        },
+        {
+            "trait_type": "Title",
+            "value": "Hope In Time"
+        },
+        {
+            "trait_type": "Edition",
+            "value": ""
+        }
+        ],
+        "tags": "The Nifty Rex,Nifty Tales #1",
+        "rank": 0,
+        "minted": "true",
+        "market":"",
+        "type": "NonFungibleESDT",
+        "balance": 1
+    },
+    "NiftyTale#2": {
+        "name": "Nifty Tale #2",
+        "edition": 0,
+        "description": "Collect Nifty Puzzle Pieces to win Nifty Tales NFTs!",
+        "image": "https://ipfs.io/ipfs/bafybeiflmsqbsyinintxy6tide5up6m2dq3qgzz4lsw5z2fcoxoagafehm/NiftyTale_2.mp4",
+        "dna": "",
+        "attributes": [
+        {
+            "trait_type": "Nifty Tale",
+            "value": "#2"
+        },
+        {
+            "trait_type": "Title",
+            "value": "Niftyrant"
+        },
+        {
+            "trait_type": "Edition",
+            "value": "400"
+        }
+        ],
+        "tags": "The Nifty Rex,Nifty Tales,Puzzle,Pieces,Tales,Tale",
+        "rank": 0,
+        "minted": "true",
+        "market":"",
+        "type": "NonFungibleESDT",
+        "balance": 1
+    }
+}

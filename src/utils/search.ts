@@ -7,7 +7,7 @@ const preprocessText = (text: string): string[] => {
 const preprocessNfts = (nfts: NftMetadata[]): string[][] => {
     return nfts.map(nft => {
       let attributesText = nft.attributes.map(attr => `${attr.trait_type.toLowerCase()}:${attr.value.toLowerCase()}`).join(" ");
-      return preprocessText(`${nft.description} ${nft.name} ${attributesText} ${nft.tags} edition:${nft.edition} rank:${nft.rank}`);
+      return preprocessText(`${nft.description} ${nft.name} ${attributesText} ${nft.tags} edition:${nft.edition} rank:${nft.rank} status:${nft.status}`);
     });
 };
 
@@ -20,7 +20,7 @@ export const searchNfts = (nfts: NftMetadata[], query: string): NftMetadata[] =>
     // First, find NFTs that exactly match the query
     const exactMatches = nfts.filter(nft => {
         // Create a single string from all relevant metadata fields for comparison
-        let metadataString = `${nft.name}${nft.description}${nft.attributes.map(attr => attr.value).join('')}${nft.tags}edition:${nft.edition}rank:${nft.rank}`;
+        let metadataString = `${nft.name}${nft.description}${nft.attributes.map(attr => attr.value).join('')}${nft.tags}edition:${nft.edition}rank:${nft.rank}status:${nft.status}`;
         metadataString = metadataString.replace(/\s+/g, '').toLowerCase(); // Normalize metadata string
 
         // Check for exact match
