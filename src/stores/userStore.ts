@@ -217,8 +217,6 @@ export const useUserStore = defineStore('user', () => {
     const stakedData = await stakingStore.getStakedData(); // Fetch staked NFTs data
     for (const nft of stakedData) {
       const poolId = parseInt(nft.pool_id, 10);
-      const editionNumber = parseInt(nft.nonce, 10);
-
       if (poolId > 0) {
         const taleKey = `NiftyTale#${poolId}`;
         const taleMetadata = (other_nfts.value as Record<string, NftMetadata>)[taleKey];
