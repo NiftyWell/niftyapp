@@ -23,6 +23,7 @@
                 </div>
                 <VueErdjsConnect
                 :qrcodeHandler="qrcodeHandler"
+                :token="'hello'"
                 @click="clickOnWalletConnect"
                 />
             </div>

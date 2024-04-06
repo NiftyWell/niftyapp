@@ -93,4 +93,14 @@ body, html {
     scrollbar-color: #c1c1c1 transparent;
 }
 
-
+.Toastify__toast {
+    border: 2px solid #0000!important;
+    border-radius: 3px;
+    background: white;
+}    
+.Toastify__progress-bar{
+    background: #fedf25;
+}
+.Toastify__close-button{
+    color: black;
+}

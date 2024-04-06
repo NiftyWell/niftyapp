@@ -1,16 +1,25 @@
 <template>
   <div>
     <!-- NFT Card -->
-    <div @click="openModal" class="nft-card">
-      <div v-if="nft.status ==='staked'" class="ribbon ribbon-top-right">
-        <span>{{ "Staked" }}</span>
+    <div @click="toggleAction" class="nft-card">
+      <div v-if="nft.status ==='staked'" class="ribbon staked ribbon-top-right">
+        <span class="staked-span">{{ "Staked" }}</span>
       </div>
-      <template v-if="isVideo(nft.image)">
-        <video :src="nft.image" alt="NFT Image" class="nft-image" loop muted playsinline></video>
-      </template>
-      <template v-else>
-        <img v-lazy="nft.image" alt="NFT Image" class="nft-image" />
-      </template>
+      <div v-if="nft.status ==='unstaked'" class="ribbon unstaked ribbon-top-right">
+        <span class="unstaked-span">{{countdown}}</span>
+        </div>
+        <div class="image-container">
+          <template v-if="isVideo(nft.image)">
+            <video :src="nft.image" alt="NFT Image" class="nft-image" loop muted playsinline></video>
+          </template>
+          <template v-else>
+            <img v-lazy="nft.image" alt="NFT Image" class="nft-image" />
+          </template>
+
+          <div v-if="select && isSelected" class="overlay"></div>
+          <div v-if="select && isSelected" class="selection-circle"></div>
+          <img v-if="select && isSelected" src="@/assets/icons/selected.svg" class="checkmark" />
+        </div>
       <div class="nft-details">
         <div class="nft-info">
           <div class="nft-name">{{ splitName(nft.name).left }}</div>
@@ -29,7 +38,7 @@
         <video :src="nft.image" alt="NFT Image" class="nft-image-modal" loop muted playsinline></video>
       </template>
       <template v-else>
-        <img :src="nft.image" alt="NFT Image" class="nft-image-modal" />
+        <img v-lazy="nft.image" alt="NFT Image" class="nft-image-modal" />
       </template>
         </div>
         <div class="nft-modal-info">
@@ -55,8 +64,43 @@
 
   
   <script setup>
-  import { ref, computed } from "vue";
+  import { ref, inject, watch, computed, watchEffect, defineEmits, defineProps, onMounted, onBeforeUnmount } from "vue";
 
+  const emit = defineEmits(['selectionChanged']);
+
+  const props = defineProps({
+    nft: Object,
+    select: {
+      type: Boolean,
+      default: false,
+    },
+  });
+
+  const isSelected = ref(false); // Tracks whether the card is selected
+  const showModal = ref(false);
+  const countdown = ref('');
+  const resetTrigger = inject('resetTrigger');
+
+  watch(resetTrigger, (newValue) => {
+    isSelected.value = false; // Reset the selection state when the trigger changes
+  });
+
+  function getRemaining() {
+    if (props.nft.status === "unstaked") {
+      let duration = props.nft.duration;
+      const nft_date_seconds = 1711896768;//this.props.nft.timestamp;
+      const now_seconds = (new Date().getTime() / 1000).toFixed(0)
+      const passed = now_seconds - nft_date_seconds;
+      if (passed >=  duration){
+        countdown.value = "CLAIMABLE";
+      }
+      else {
+        const info = secondsToDhms(duration - passed);
+        countdown.value = info;
+      }
+    }
+  }
+  
   // Method to split NFT name based on '#'
   const splitName = (name) => {
     const parts = name.split('#');
@@ -70,17 +114,33 @@
       left: parts.slice(0, 1).join('#'), // Join the first two parts (or just the first if only one '#')
       right: parts[1] || '', // The part after the second '#', if present
     };
-
   };
 
-  const props = defineProps({
-    nft: Object,
+  const toggleAction = () => {
+    if (props.select) {
+      isSelected.value = !isSelected.value; // Toggle selection state if in 'select' mode
+      // Emit an event to inform the parent component about the selection change, if needed
+      console.log("selected");
+      emit('selectionChanged', { nft: props.nft, isSelected: isSelected.value });
+    } else {
+      showModal.value = true; // Open the modal if not in 'select' mode
+    }
+  };
+
+  let intervalId;
+  onMounted(() => {
+    getRemaining(); // Initial update
+    intervalId = setInterval(getRemaining, 1000); // Update every second
   });
+
+  onBeforeUnmount(() => {
+    clearInterval(intervalId); // Clean up interval
+  });
+
   const isVideo = (url) => {
     return url.match(/\.(mp4)$/i) != null;
   };
-  const showModal = ref(false);
-  
+    
   const openModal = () => {
     showModal.value = true;
   };
@@ -108,13 +168,81 @@
     }
     return hex;
   };
+
+  const secondsToDhms = (seconds) => {
+      seconds = Number(seconds);
+      var d = Math.floor(seconds / (3600*24));
+      var h = Math.floor(seconds % (3600*24) / 3600);
+      var m = Math.floor(seconds % 3600 / 60);
+      var s = Math.floor(seconds % 60);
+      if(d>0){
+          if(h==0){
+              return d+' DAYS'
+          }
+          return d+ 'D:'+h+'h'
+      }
+      if(h>0){
+          if(m==0){
+              return h+'h'
+          }
+          return h+'h:'+m+'m'
+      }
+      if(m>0){
+          if(s==0){
+              return m+'m'
+          }
+          return m+'m:'+s+'s'
+      }
+      return s+'s';
+    }
   </script>
   
   
   <style lang="scss" scoped>
+  .image-container {
+    position: relative; // This makes it the reference for the absolutely positioned children
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); // Overlay covering the image
+    border-radius: 0.2rem; // Match the border-radius of your image if necessary
+  }
+  .selection-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); // Center the circle in the image container
+    background: white;
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 42%;
+    left: 40%;
+    right: 0;
+    bottom: 0;
+    width: 1.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .nft {
     &-image {
-      width: 8rem;
+      max-width: 8rem;
       border-radius: 0.2rem;
       &-modal {
         width: 20rem;
@@ -165,7 +293,7 @@
   }
   
   .modal {
-    z-index: 1;
+    z-index: 2;
     position: fixed;
     top: 0;
     left: 0;
@@ -269,31 +397,44 @@
   }
 
   .ribbon {
-  user-select: none;
-  width: 150px;
-  height: 150px;
-  overflow: hidden;
-  position: absolute;
-  width: 112px !important; // You have two width declarations, consider which one is necessary
-  height: 112px !important; // Same as above for height
-
-  &::before,
-  &::after {
+    user-select: none;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
     position: absolute;
-    z-index: -1;
-    content: '';
-    display: block;
-    border: 5px solid #296877;
+    width: 112px !important; // You have two width declarations, consider which one is necessary
+    height: 112px !important; // Same as above for height
+    z-index: 2;
+    &::before,
+    &::after {
+      position: absolute;
+      z-index: -1;
+      content: '';
+      display: block;
+      border: 5px solid #818788;
   }
 
-  span {
+  .staked-span {
+    background: linear-gradient(54.65deg, #9cd7e6 10.41%, #c4f3ff 28.41%, #9adff0 46.71%, #66bed4 68.01%);
     position: absolute;
     display: block;
     width: 225px;
     padding: 15px 0;
-    background: linear-gradient(54.65deg, #9cd7e6 10.41%, #c4f3ff 28.41%, #9adff0 46.71%, #66bed4 68.01%);
     color: rgb(255, 255, 255);
-    font-size: larger;
+    font-size: x-larger;
+    text-shadow: 0 1px 1px rgba(0,0,0,.2);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .unstaked-span {
+    background: linear-gradient(54.65deg, #e6bb9c 10.41%, #ffe6c4 28.41%, #f0c69a 46.71%, #d49b66 68.01%);
+    position: absolute;
+    display: block;
+    width: 225px;
+    padding: 15px 0;
+    color: rgb(255, 255, 255);
+    font-size: x-larger;
     text-shadow: 0 1px 1px rgba(0,0,0,.2);
     text-transform: uppercase;
     text-align: center;
@@ -311,14 +452,14 @@
     }
 
     &::before {
-      left: 11px !important; 
+      left: 16px !important; 
       border-top-color: transparent;
       border-right-color: transparent;
       top: 0;
     }
 
     &::after {
-      bottom: 11px !important; 
+      bottom: 16px !important; 
       border-top-color: transparent;
       border-right-color: transparent;
       right: 0; 

@@ -13,6 +13,8 @@ export interface NftMetadata {
     balance?: number; // Optional balance attribute for puzzle pieces
     type?: string; // Add the type here using the enum
     status?: string;
+    timestamp?: number;
+    duration?: number;
 }
 
 export interface Attribute {

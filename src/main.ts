@@ -4,10 +4,11 @@ import router from './router';
 import { createPinia } from 'pinia';
 import { ElrondEnvEnum, providersOptions, initVueErdJsPlugin } from "vue-mvx";
 import VueLazyload from 'vue3-lazyload';
-import Rex from './assets/images/rex.png';
 import RexBlur from './assets/images/rex-blur.png';
 import './assets/scss/main.scss'; // Importing global SCSS
 import './assets/fonts/fonts.css';
+import Vue3Toastify, { type ToastContainerOptions } from "vue3-toastify";
+
 const app = createApp(App);
 const pinia = createPinia();
 
@@ -19,7 +20,10 @@ initVueErdJsPlugin(
   app.use(pinia);
   app.use(VueLazyload, {
     loading: RexBlur, // Placeholder image
-    error: Rex, // Error image
+    error: RexBlur, // Error image
   });
+  app.use(Vue3Toastify, {
+    autoClose: 3000,
+  } as ToastContainerOptions);
   app.mount('#app');
 });

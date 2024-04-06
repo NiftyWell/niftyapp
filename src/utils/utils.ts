@@ -29,5 +29,27 @@ function parseAttributes(attributesString: string): Attribute[] {
       return { trait_type, value };
   });
 }
+const strToHex = (str: string): string => {
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    result += str.charCodeAt(i).toString(16);
+  }
+  if (result.length % 2 !== 0) {
+    result = `0${result}`;
+  }
+  return result;
+};
 
-export { sleep, intToHex, stringToHex, decodeBase64, parseAttributes };
+function formatMultiEsdtData(nft: any, raw_ticker: any) {
+  const ticker = strToHex(raw_ticker);
+  const toSend = intToHex(nft.length.toString());
+  let data = toSend;
+  nft.forEach(function (nft: any) {
+    const quantity = "01";
+    const nonce = intToHex(nft.nonce);
+    data = `${data}@${ticker}@${nonce}@${quantity}`;
+  });
+  return data;
+}
+
+export { sleep, intToHex, stringToHex, decodeBase64, parseAttributes, formatMultiEsdtData };

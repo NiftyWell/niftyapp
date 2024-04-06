@@ -57,20 +57,29 @@ const category = ref('ALL'); // New ref to track the current category
 
 watch(category, (newCategory) => {
   if (newCategory === 'OWNED') {
-    const ownedNfts = [...userStore.walletNfts.rex];
+    const ownedNfts = [...userStore.walletBalance.rex];
 
-    for (const edition of Object.keys(userStore.walletNfts.tale)) {
-      ownedNfts.push(...userStore.walletNfts.tale[edition]);
+    for (const edition of Object.keys(userStore.walletBalance.tale)) {
+      ownedNfts.push(...userStore.walletBalance.tale[edition]);
     }
 
-    for (const edition of Object.keys(userStore.walletNfts.puzzle)) {
-      ownedNfts.push(...userStore.walletNfts.puzzle[edition]);
+    for (const edition of Object.keys(userStore.walletBalance.puzzle)) {
+      ownedNfts.push(...userStore.walletBalance.puzzle[edition]);
     }
 
     ownedNfts.push(...userStore.stakedNfts.rex);
 
     for (const edition of Object.keys(userStore.stakedNfts.tale)) {
       ownedNfts.push(...userStore.stakedNfts.tale[edition]);
+    }
+
+    ownedNfts.push(...userStore.unstakedNfts.rex);
+
+    for (const edition of Object.keys(userStore.unstakedNfts.tale)) {
+      console.log("edition", edition);
+      console.log("userStore.unstakedNfts.tale", userStore.unstakedNfts.tale[edition]);
+      console.log("userStore.unstakedNfts.tale[edition]", userStore.unstakedNfts.tale[edition]);
+      ownedNfts.push(...userStore.unstakedNfts.tale[edition]);
     }
 
     nfts.value = ownedNfts;
