@@ -45,7 +45,7 @@ const info = storeToRefs(store);
   font-size: 14px !important;
 }
 .toast-link::after {
-  content: url("@/assets/external_link.svg");
+  content: url("@/assets/icons/external_link.svg");
   background-size: 125px 125px;
   margin-left: 10px;
   margin-bottom: -10px;
