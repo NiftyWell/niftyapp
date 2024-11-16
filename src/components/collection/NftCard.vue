@@ -50,8 +50,8 @@
             <table>
               <tr v-for="(row, rowIndex) in attributesInRows" :key="rowIndex" class="attribute-row">
                 <td v-for="(attr, attrIndex) in row" :key="attrIndex" class="attribute">
-                  <strong>{{ attr.trait_type }}</strong> <!-- trait_type is naturally above value due to the block-level display -->
-                  <div>{{ attr.value }}</div> <!-- value is displayed below trait_type -->
+                  <strong>{{ attr.trait_type }}</strong>
+                  <div>{{ attr.value }}</div>
                 </td>
               </tr>
             </table>
@@ -200,7 +200,7 @@
   
   <style lang="scss" scoped>
   .image-container {
-    position: relative; // This makes it the reference for the absolutely positioned children
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -213,7 +213,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.4); // Overlay covering the image
-    border-radius: 0.2rem; // Match the border-radius of your image if necessary
+    border-radius: 0.2rem;
   }
   .selection-circle {
     position: absolute;
@@ -314,14 +314,13 @@
     }
   }
   .attribute {
-    flex-grow: 1; /* Allow attribute to grow and take available space */
+    flex-grow: 1;
     background-color: #eeeeee;
     border-radius: 0.3rem;
     padding: 0.5rem;
     margin: 0.1rem;
     text-align: center;
 
-    /* Use flexbox to evenly distribute space when there are fewer than 3 attributes */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -402,8 +401,8 @@
     height: 150px;
     overflow: hidden;
     position: absolute;
-    width: 112px !important; // You have two width declarations, consider which one is necessary
-    height: 112px !important; // Same as above for height
+    width: 112px !important; 
+    height: 112px !important;
     z-index: 2;
     &::before,
     &::after {

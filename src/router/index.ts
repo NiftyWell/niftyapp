@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: Collection,
   },
   {
     path: '/staking',
@@ -26,7 +26,9 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/maze',
     name: 'Maze',
-    component: Maze,
+    beforeEnter() {
+      window.location.href = 'https://nifty-maze.netlify.app';
+    },
   },
   {
     path: '/collection',
@@ -48,7 +50,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Community',
     component: Community,
   },
-  // ...add other routes here
 ];
 
 const router = createRouter({

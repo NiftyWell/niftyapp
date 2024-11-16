@@ -11,8 +11,9 @@
         
         <div class="side-content">
             <h3>Communifty tab</h3>
-            <!-- Your sidebar links and text here -->
+            <!-- 
             <router-link class="router-link" to="/wallet" active-class="router-link-active"><span role="img" aria-label="Wallet">👛</span>Wallet</router-link>
+            -->
             <router-link class="router-link" to="/collection" active-class="router-link-active"><span role="img" aria-label="Collection">🃏</span>Collection</router-link>
             <router-link class="router-link" to="/staking" active-class="router-link-active"><span role="img" aria-label="Staking">🔒</span> Staking</router-link>
             <router-link class="router-link" to="/lab" active-class="router-link-active"><span role="img" aria-label="Lab">🧪</span> Lab</router-link>
@@ -20,7 +21,6 @@
                 <img src="@/assets/images/maze/blocks/portal.gif" alt="Maze" />
                 Maze
             </router-link>            
-            <!-- ... other links -->
         </div>
     </aside>
 </template>
@@ -41,9 +41,9 @@ const mainStore = useMainStore();
     margin-top: 3rem !important;
     background: white;
     position: fixed;
-    top: $navbar-height - 20px; // Adjust based on the actual height of your navbar
+    top: $navbar-height - 20px;
     bottom: 0;
-    width: $sidebar-width; // Expanded width
+    width: $sidebar-width;
     transition: 0.3s;
     overflow-x: hidden;
     padding: 1rem;
@@ -53,35 +53,35 @@ const mainStore = useMainStore();
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    align-items: center; // Centers children horizontally in the sidebar
-    justify-content: center; // Centers children vertically in the sidebar
+    align-items: center;
+    justify-content: center;
 
     .toggle-container {
         position: absolute;
         top: 0.5rem;
-        right: 0.5rem; // Positions the toggle icon at the top-right corner
+        right: 0.5rem; 
     }
     .side-content {
         display: flex;
         flex-direction: column;
-        margin-top: calc($navbar-height - 5rem); // Set the top margin to 30px
-        position: absolute; // Fixes the position within the sidebar
-        top: 3rem; // Adjust this value to position the content as needed
+        margin-top: calc($navbar-height - 5rem);
+        position: absolute;
+        top: 3rem;
         .router-link {
             display: flex;
-            align-items: center; // Aligns the emoji and text vertically
+            align-items: center;
             margin-bottom: 0.5rem; // Space between links
             padding: 0.2rem; // Padding around links
             border-radius: 0.4rem;
             transition: transform 0.3s ease; // Smooth scaling transition
 
             &:hover, &.router-link-active {
-                transform: scale(1.02); // Scale up link on hover and when active
+                transform: scale(1.02); 
                 box-shadow: rgba(0, 0, 0, 0.192) 0px 0px 10px 0px inset, rgba(0, 0, 0, 0.1) 0px 0px 0px 0px;
             }
 
             &:active {
-                transform: scale(1); // Return to original size when clicked
+                transform: scale(1);
             }
 
 
@@ -91,7 +91,7 @@ const mainStore = useMainStore();
 
             img {
                 max-width: 30px; // Set the maximum width of the image
-                height: auto; // Maintain aspect ratio
+                height: auto;
             }
         }
 
@@ -101,29 +101,26 @@ const mainStore = useMainStore();
         }
     }
     .toggle-icon {
-        cursor: pointer; // Makes it clear that the image is clickable
-        transition: transform 0.3s; // Smooth transition for the transform
+        cursor: pointer;
+        transition: transform 0.3s;
 
         &:hover {
-            opacity: 0.8; // Optional: change the opacity on hover for a visual effect
+            opacity: 0.8;
         }
     }
     &.collapsed {
-        width: $collapsed-sidebar-width; // Collapsed width, e.g., 50px
+        width: $collapsed-sidebar-width;
         height: $collapsed-sidebar-heigth;
-        // Hide the content when collapsed
         .side-content {
             display: none;
         }
         .toggle-icon {
-            transform: scaleX(-1); // Mirrors the image horizontally
+            transform: scaleX(-1);
         }
 
-        // Adjust the padding or any other properties for the collapsed state
-        padding: 0.5rem; // Reduced padding when collapsed
+        padding: 0.5rem; 
     }
 
-    // Styles for the active link
     .router-link-active {
         //font-weight: bold;
     }

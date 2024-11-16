@@ -1,7 +1,7 @@
 <template>
     <div class="community">
       <h1>Welcome to the Nifty Project</h1>
-      <p>This is the community page of your application.</p>
+      <p>Community page coming soon...</p>
    
     </div>
 </template>

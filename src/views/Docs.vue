@@ -1,7 +1,7 @@
 <template>
     <div class="docs">
       <h1>Welcome to the Nifty Project</h1>
-      <p>This is the docs page of your application.</p>
+      <p>Docs page coming soon...</p>
    
     </div>
 </template>

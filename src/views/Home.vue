@@ -1,7 +1,7 @@
 <template>
     <div class="home">
       <h1>Welcome to the Nifty Project</h1>
-      <p>This is the home page of your application.</p>
+      <p>Home Page Coming Soon...</p>
    
     </div>
 </template>

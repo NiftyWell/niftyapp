@@ -1,11 +1,10 @@
-// src/types/index.ts
 import { NftMetadata } from '@/types';
 
 export interface FetchedNft {
     identifier: string;
     collection: string;
     timestamp: number;
-    attributes: string; // This might be a Base64 encoded string based on your example
+    attributes: string;
     nonce: number;
     type: string;
     name: string;
@@ -16,7 +15,7 @@ export interface FetchedNft {
     media: NftMedia[];
     isWhitelistedStorage: boolean;
     tags: string[];
-    metadata: NftMetadata; // Reusing the NftMetadata interface you already have
+    metadata: NftMetadata;
     owner: string;
     ticker: string;
     score: number;
