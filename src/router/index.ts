@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 //import Home from '../views/Home.vue';
 import Staking from '../views/Staking.vue';
 import Lab from '../views/Lab.vue';
-//import Maze from '../views/Maze.vue';
+import Maze from '../views/Maze.vue';
 import Collection from '../views/Collection.vue';
 import Wallet from '../views/Wallet.vue';
 import Docs from '../views/Docs.vue';
@@ -26,7 +26,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/maze',
     name: 'Maze',
-    beforeEnter: (to, from, next) => {
+    component: Maze,
+    beforeEnter: () => {
       window.location.href = 'https://nifty-maze.netlify.app';
     },
   },
